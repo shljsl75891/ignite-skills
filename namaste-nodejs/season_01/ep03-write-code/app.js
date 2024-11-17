@@ -4,4 +4,4 @@ console.log("This: ", this); // {}
 
 console.log("Global This: ", globalThis); // Global Object
 
-console.log(globalThis === global);
+console.log(globalThis === global); // true
