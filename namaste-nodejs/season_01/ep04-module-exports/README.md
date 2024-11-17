@@ -11,3 +11,5 @@
 | Synchronous Loading                      | Asynchronous Loading         |
 | Default in NodeJS                        | Default in Angular, Loopback |
 | Non Strict mode                          | Strict Mode                  |
+
+> `module.exports` is an `{}` empty object by default
