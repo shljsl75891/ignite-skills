@@ -8,6 +8,6 @@
 | ---------------------------------------- | ---------------------------- |
 | Older way                                | Newer Way                    |
 | `require()` and `modules.exports` syntax | `import` and `export` syntax |
-| Synchronous                              | Asynchronous available       |
+| Synchronous Loading                      | Asynchronous Loading         |
 | Default in NodeJS                        | Default in Angular, Loopback |
 | Non Strict mode                          | Strict Mode                  |
