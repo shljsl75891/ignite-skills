@@ -32,10 +32,12 @@ In other programming languages, code chunks can be executed using multiple threa
 - Like in chess, JS Engine = King and Libuv = Queen. It is an unsung hero in Node.js. It just takes callback of asynchronous tasks, and return them with data required after task is completed.
 - The asynchronous tasks will take their own time to be completed while JS Engine will be chilling once synchronous code is executed completely.
 - Libuv handles all asynchronous tasks parallely and efficiently. It registers them, executes them and returns the callback function with response of asynchronous tasks.
-- The returned callback functions will then be executed by JS Engine synchronously. 
+- The returned callback functions will then be executed by JS Engine synchronously.
 - The Libuv will return callback functions only when after JS Engine's the callstack is empty.
 
-However, there are ways also for such asynchronous tasks to be handled synchronously. It will be offloaded to libuv, but JS Engine will wait for results before proceeding further. These equivalent corresponding APIs will have no parameter for callback. 
+![](/assets/2024-11-20-18-50-31.png)
+
+However, there are ways also for such asynchronous tasks to be handled synchronously. It will be offloaded to libuv, but JS Engine will wait for results before proceeding further. These equivalent corresponding APIs will have no parameter for callback.
 
 ```js
 // Synchronous - Blocks main single thread
