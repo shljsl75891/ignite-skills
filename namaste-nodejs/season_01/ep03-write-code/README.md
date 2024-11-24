@@ -22,4 +22,4 @@ console.log("Global This: ", globalThis); // Global Object
 - In NodeJS, this global object is known as `global`.
 - In web workers, global object can be accessed using `self`.
 
-`globalThis` was introduced In ECMAScript 2020. It provides a consistent way to access global object regardless of JS Runtime environment.
+`globalThis` was introduced In ECMAScript 2020 (by TC39 committe). It provides a consistent way to access global object regardless of JS Runtime environment.
