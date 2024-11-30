@@ -58,4 +58,10 @@ const wrapper = [
   "(function (exports, require, module, __filename, __dirname) { ",
   "\n});",
 ];
+
+// Actually is called like below
+var args = [self.exports, require, self, filename, dirname];
+return compiledWrapper.apply(self.exports, args);
 ```
+
+So, `this` refers to `module.exports` on module level.
