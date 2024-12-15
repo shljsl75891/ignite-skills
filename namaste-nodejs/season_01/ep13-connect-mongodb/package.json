@@ -1,0 +1,25 @@
+{
+  "name": "ep13-connect-mongodb",
+  "version": "1.0.0",
+  "type": "module",
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid",
+    "bracketSpacing": false
+  },
+  "exports": "./src/app.js",
+  "scripts": {
+    "start": "node ./src/app.js",
+    "dev": "nodemon ./src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "mongodb": "^6.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
