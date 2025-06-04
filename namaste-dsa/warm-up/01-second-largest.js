@@ -5,9 +5,10 @@ function findSecondLargest(arr) {
     if (arr[i] > largest) {
       secondLargest = largest;
       largest = arr[i];
-    }
-    if (arr[i] > secondLargest && arr[i] < largest) {
+    } else if (arr[i] > secondLargest) {
       secondLargest = arr[i];
+    } else {
+      // DO NOTHING
     }
   }
 
