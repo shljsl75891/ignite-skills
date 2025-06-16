@@ -50,3 +50,5 @@ app.use((err, req, res, next) => {
 ```
 
 - This must be written at the last of all routes. As _Order of route handlers is very important._
+
+- `express.json()` returns a middleware, which converts JSON payloads to Javascript Objects, and add them in `request`.
