@@ -14,8 +14,13 @@ requestSchema.pre("save", function (next) {
 });
 ```
 
-- Use indexes to enforce constraints and improve performance of the database
+- Use indexes to enforce constraints and improve performance of the database []()
   - `unique` index to enforce constraint
   ```js
+  // 1 = Ascending, -1 = Descending
   requestSchema.index({ sender: 1, receiver: 1 }, { unique: true });
   ```
+  - We can add `index: true` as well in schema paths properties
+- Advantages and Disadvantages of creating indexes
+- Read about [Compound Indexes](https://www.mongodb.com/docs/manual/core/indexes/index-types/index-compound/) in mongodb
+- Read about [Querying](https://www.mongodb.com/docs/manual/reference/operator/query/)
