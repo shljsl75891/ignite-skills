@@ -24,7 +24,7 @@ The APIs to be created:
   - GET `/users/feed` - for exploring other users to send connection requests
   - DELETE `/users/delete-my-account` - for permanently deleting my account
 - For `requestRouter`
-  - GET `/requests/sent` - for seeing connection requests sent by me
+  - GET `/requests/participated` - for seeing connection requests involving myself
   - GET `/requests/received` - for seeing my recived connection requests
   - POST `/requests/send/:status/:receiver` - for liking / disliking someone
   - PATCH `/requests/review/:id/:status` - for accepting / rejecting received connection request
