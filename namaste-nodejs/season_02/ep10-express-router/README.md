@@ -23,6 +23,7 @@ The APIs to be created:
   - PATCH `/users/update-profile` - for updating my profile
   - GET `/users/feed` - for exploring other users to send connection requests
   - DELETE `/users/delete-my-account` - for permanently deleting my account
+  - GET `/users/connections` - for getting my connections
 - For `requestRouter`
   - GET `/requests/participated` - for seeing connection requests involving myself
   - GET `/requests/received` - for seeing my recived connection requests
