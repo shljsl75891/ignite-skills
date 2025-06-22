@@ -21,7 +21,8 @@ The APIs to be created:
 - For `userRouter`
   - GET `/users/profile` - for seeing my profile
   - PATCH `/users/update-profile` - for updating my profile
-  - GET `/users/feed` - for exploring other users to send connection requests
+  - GET `/users/feed` - for exploring other users to send connection requests with pagination
+  - GET `/users/feed/count` - for getting total count of other users to send connection requests
   - DELETE `/users/delete-my-account` - for permanently deleting my account
   - GET `/users/connections` - for getting my connections
 - For `requestRouter`
