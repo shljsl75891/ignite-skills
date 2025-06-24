@@ -1,3 +1,6 @@
 [submodule "namaste-nodejs/devtinder-api"]
 	path = namaste-nodejs/devtinder-api
 	url = git@personal.github.com:shljsl75891/devtinder-api.git
+[submodule "namaste-nodejs/devtinder-ui"]
+	path = namaste-nodejs/devtinder-ui
+	url = git@personal.github.com:shljsl75891/devtinder-ui.git
