@@ -75,3 +75,7 @@ Thus, how internet works. If we are connected to internet by any means, we are c
 3. **Network Layer**: In this layer, all routers receives the frames and converts them into packets. They are smart enough to determine the shortest path to the destination based on the IP address, no matter how far the source and destination are.
 4. **Transport Layer**: This layer make sure thay the sent packets gets accross safely in the internet to destination. It also handles the flow control and error correction. If any packet get lost (which is very common in internet), it may be resent or retransmitted. In that case, the sender will be notified about the lost packet, and it will be resent.
 5. **Application Layer**: This is the layer where all the data is processed and presented to the user. Node.js networking applications run on this layer.
+
+#### HOMEWORK
+
+- Analyze the tcp app using wireshark application
