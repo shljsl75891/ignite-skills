@@ -26,6 +26,7 @@ These all are binary data nothing else. Each system has its own way of represent
 - Accessing filesystem, reading or writing network requests, communication b/w processes etc. everything is possible with the help of buffers.
 - Without buffers, there would have no way to deal with binary data in `Node.js`.
 
-## Before learning buffers, we need to understand about three important topics:
+## Before learning buffers, we need to understand about these important topics:
 
 1. [Number Systems](./01-number-systems.md)
+2. [Character Sets + Encoding](./02-character-sets-encoding.md)
