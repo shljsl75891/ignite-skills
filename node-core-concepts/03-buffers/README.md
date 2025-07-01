@@ -40,3 +40,7 @@ These all are binary data nothing else. Each system has its own way of represent
 - Allocating a buffer require that much capcaity available in the memory. If we try to allocate more than available memory, the node program will crash.
 
 Thus, Buffers are very powerful concept in Node.js. We can take data from a file, network request or any other source, move around it or maybe do some operations on it, and then write it back to a file or send it over the network.
+
+## Homework
+
+- Play with encodings of different characters by visiting [SymblC](https://symbl.cc)
