@@ -38,6 +38,22 @@ These all are binary data nothing else. Each system has its own way of represent
 - In Node.js, buffers act like array. They can have elements each of exactly 1 byte / 8 bits in size.
 - Assigning a value that can be stored in more than 8 bits, will result in discarding of all rest of the left bits other than rightmost 8 bits. For example, if we try to assign (500)<sub>10</sub> to a buffer's element, which is (111110100)<sub>2</sub>, only the last 8 bits will be stored (11110100)<sub>2</sub> = (244)<sub>10</sub> and rest are discarded.
 - Allocating a buffer require that much capcaity available in the memory. If we try to allocate more than available memory, the node program will crash.
+- The operating system actually allocates that much memory for node application, and it is easily visible in the task manager or activity monitor.
+- It is important to be careful while using resources of the machine through low level of programming, because it can lead to memory leaks and crash the application.
+
+```js
+const hugeBuffer = Buffer.alloc(1e9);
+setInterval(() => {
+  hugeBuffer.fill(1);
+}, 1000);
+```
+
+- By default, we can allocate buffers of size up to 4294967296 bytes.
+
+```js
+const { constants } = require("node:buffer");
+console.log(constants.MAX_LENGTH); // 4294967296 bytes
+```
 
 Thus, Buffers are very powerful concept in Node.js. We can take data from a file, network request or any other source, move around it or maybe do some operations on it, and then write it back to a file or send it over the network.
 
