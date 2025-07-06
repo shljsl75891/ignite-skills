@@ -90,6 +90,15 @@ As soon as our node application starts, it allocates a pool of memory for usage 
 - Use KB for decimal (base 10) systems — common in storage (e.g., SSD sizes).
 - Use KiB for binary (base 2) systems — common in programming and memory (e.g., RAM, buffer sizes).
 
+## Ecmascript standards
+
+In ES6, we have concept of `ArrayBuffer` and `TypedArray` which are similar to buffers in Node.js. They are used to work with binary data in a more structured way.
+
+- _**ArrayBuffer:**_ It is a contigious piece of memory we can create to deal with raw binary data. We cannot read or write directly from it.
+- _**TypedArray:**_ It is a view on top of `ArrayBuffer` that allows us to read and write data in a specific format (like `Int8Array`, `Uint8Array`, `Float32Array` etc.), those interpret that block of memory differently. We can overlay multiple views on the same buffer for different perspectives of the same binary data.
+
+![](/assets/2025-07-06-19-18-06.png)
+
 ## Homework
 
 - Play with encodings of different characters by visiting [SymblC](https://symbl.cc)
