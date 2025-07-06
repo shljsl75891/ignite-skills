@@ -57,6 +57,39 @@ console.log(constants.MAX_LENGTH); // 4294967296 bytes
 
 Thus, Buffers are very powerful concept in Node.js. We can take data from a file, network request or any other source, move around it or maybe do some operations on it, and then write it back to a file or send it over the network.
 
+## Faster way to allocate buffers
+
+- There is a faster way exist in node to allocate bufers, which is `Buffer.allocUnsafe(size)`.
+- But, it is unsafe because it does not initialize the memory allocated to the buffer.
+- It means the buffer may contain sensitive information from the previous process that used that memory such as API keys, credentials etc.
+- Usage of this method is strongly discouraged for security sensitive applications.
+
+#### Reasons why it is faster ?
+
+![](/assets/2025-07-06-14-15-16.png)
+
+- No pre-initialization of buffer, after allocation of memory.
+- Uses the pre-allocated pool allocated by the node.js runtime.
+
+> `Buffer.allocUnsafe(size)` is used by `Buffer.from()` and `Bugfer.concat()` methods internally, but they fill it as soon as possible.
+
+As soon as our node application starts, it allocates a pool of memory for usage of future buffers. This pool is only used by `Buffer.allocUnsafe(size)` method (if size <= `Buffer.poolSize >>> 1`). `Buffer.alloc(size)` method always allocates a new memory outside this pool.
+
+> - `>>> n` = Right shift the binary number by `n` bits. (Divide by 2<sup>n</sup>)
+> - `<<< n` = Left shift the binary number by `n` bits. (Multiply by 2<sup>n</sup>)
+
+`Buffer.allocUnsafeSlow(size)` is a slower version of `Buffer.allocUnsafe(size)`, which allocates the buffer outside the pre-allocated pool just like `Buffer.alloc(size)` method.
+
+#### KiB vs KB
+
+| Term    | Full Form | Base | Bytes               |
+| ------- | --------- | ---- | ------------------- |
+| **KB**  | Kilobyte  | 10   | 1 KB = 1,000 bytes  |
+| **KiB** | Kibibyte  | 2    | 1 KiB = 1,024 bytes |
+
+- Use KB for decimal (base 10) systems — common in storage (e.g., SSD sizes).
+- Use KiB for binary (base 2) systems — common in programming and memory (e.g., RAM, buffer sizes).
+
 ## Homework
 
 - Play with encodings of different characters by visiting [SymblC](https://symbl.cc)
