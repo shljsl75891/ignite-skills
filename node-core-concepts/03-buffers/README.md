@@ -33,7 +33,7 @@ These all are binary data nothing else. Each system has its own way of represent
 
 ![](/assets/2025-06-30-23-12-22.png)
 
-- Buffers are containers in a memory allocated to us.
+- Buffers are view abstraction over allocated memory containers to deal with raw binary data.
 - They are data structures that allow us to work with binary data in a more manageable way.
 - In Node.js, buffers act like array. They can have elements each of exactly 1 byte / 8 bits in size.
 - Assigning a value that can be stored in more than 8 bits, will result in discarding of all rest of the left bits other than rightmost 8 bits. For example, if we try to assign (500)<sub>10</sub> to a buffer's element, which is (111110100)<sub>2</sub>, only the last 8 bits will be stored (11110100)<sub>2</sub> = (244)<sub>10</sub> and rest are discarded.
@@ -99,6 +99,19 @@ In ES6, we have concept of `ArrayBuffer` and `TypedArray` which are similar to b
 
 ![](/assets/2025-07-06-19-18-06.png)
 
+**NOTE:** So, buffers are not memory containers. It is a subclass of `Uint8Array` typed array. That's why each element in buffer is of 8 bits.
+
+##### Buffer = a specialized view in Node.js over that `ArrayBuffer` memory, with extra APIs for:
+
+- encoding/decoding (utf8, base64, etc.)
+- file/network I/O
+- convenience methods (e.g. .toString(), .write())
+
+![](/assets/2025-07-06-20-12-53.png)
+
 ## Homework
 
 - Play with encodings of different characters by visiting [SymblC](https://symbl.cc)
+- [Binary Addition and Subtraction](https://www.youtube.com/watch?v=sJXTo3EZoxM&list=PL0o_zxa4K1BXCpQbUdf0htZE8SS0PYjy-&index=19)
+- [Floating Points Working](https://www.youtube.com/watch?v=dQhj5RGtag0)
+- [Endianness Explained With an Egg](https://www.youtube.com/watch?v=NcaiHcBvDR4)
