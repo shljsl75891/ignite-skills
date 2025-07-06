@@ -15,7 +15,7 @@ Everything we see in the computer is binary data.
 
 These all are binary data nothing else. Each system has its own way of representing binary data.
 
-- **Transistors** = M1 hs 16 billion transistors. All can be either in OFF state or ON state.
+- **Transistors** = M1 has 16 billion transistors. All can be either in OFF state or ON state.
 - **Light Bulb** = It can be either ON or OFF.
 - **Routers, Wifi** = They all work with electromagnetic waves. They also have only two states 0 and 1.
 - **USBs / Harddisks / RAM** = Everything is stored in 0 and 1s.
