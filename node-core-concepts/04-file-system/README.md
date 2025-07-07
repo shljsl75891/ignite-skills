@@ -63,3 +63,4 @@ Disk (SSD/HDD)
 - Before doing any operation on a file contents, we need to first open the file using `fs.open()`. When opening a file, it doesn't mean that the file is opened in the memory. Instead, a number called **File Descriptor** is assiged to the file. Each open file is assigned a unique file descriptor (FD) by the operating system.
 - After openiing a file, it is very important to close the file using `fs.close()`. This is because the operating system has a limit on the number of files that can be opened at a time. If we don't close the file, it will lead to file descriptor (resource) leaks (can cause `EMFILE: too many open files`) and eventually crash the application.
 - As we read file, the position of the file pointer moves forward, just like we do in a text editor using our eyes.
+- Node.js comes with only builtin character encoding.
