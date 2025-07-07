@@ -4,3 +4,6 @@
 [submodule "namaste-nodejs/devtinder-ui"]
 	path = namaste-nodejs/devtinder-ui
 	url = git@personal.github.com:shljsl75891/devtinder-ui.git
+[submodule "design-principles-and-patterns"]
+	path = design-principles-and-patterns
+	url = git@personal.github.com:shljsl75891/design-principles-and-patterns.git
