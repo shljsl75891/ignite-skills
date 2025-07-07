@@ -56,3 +56,10 @@ Disk (SSD/HDD)
    - Example: `fs.readFile()`, `fs.writeFile()`. This is the fastest way. Use this way when performaance is very critical.
 3. **Promises**: Using Promises to handle file operations, which allows for cleaner code and better error handling.
    - Example: `fs.promises.readFile()`, `fs.promises.writeFile()`. This is the faster and modern way. Stick with this 90% of the time.
+
+## Things learnt while building application
+
+- `fs.watch` = This method is used to watch for changes in a file or directory. It can be used to monitor file changes and trigger actions when a file is modified, created, or deleted. It gives two types of events: `change` and `rename`. The behavior of this API is not consistent across different operating systems, and is not in control of Node.js.
+- Before doing any operation on a file contents, we need to first open the file using `fs.open()`. When opening a file, it doesn't mean that the file is opened in the memory. Instead, a number called **File Descriptor** is assiged to the file. Each open file is assigned a unique file descriptor (FD) by the operating system.
+- After openiing a file, it is very important to close the file using `fs.close()`. This is because the operating system has a limit on the number of files that can be opened at a time. If we don't close the file, it will lead to file descriptor (resource) leaks (can cause `EMFILE: too many open files`) and eventually crash the application.
+- As we read file, the position of the file pointer moves forward, just like we do in a text editor using our eyes.
