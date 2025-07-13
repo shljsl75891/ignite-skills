@@ -41,6 +41,8 @@ const writeData = () => {
 writeData();
 
 stream.on("drain", () => {
+  // The stream will be drained (total content size / high watermark) times
+  // the number of writes to destination also will be very less around same number
   writeData(); // resume the write operations
 });
 
