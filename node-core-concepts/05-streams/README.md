@@ -63,3 +63,7 @@ The readable streams can be in three states:
 > We should not write the data onto the disk with same speed we are reading. As mostly hard disks have more read speed than write speed. For example, in my system, reading speed is 900 MB/s and writing speed is 70 MB/s on benchmarking. So, it is really important to keep pausing and resuming the readable stream when writing simulataneously on filling of internal buffer and draining of it.
 
 ![](/assets/2025-07-13-16-15-56.png)
+
+While reading from source, first and last part of each chunk may contain lost data. This is because, the source may not be able to provide data in chunks of same size. So, we should do a rigorous testing before pushing the code to production.
+
+![](/assets/2025-07-13-22-36-59.png)

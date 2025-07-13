@@ -23,7 +23,7 @@ const internalBufferSize = stream.writableHighWaterMark; // 16384 bytes
 const spaceLeftInInternalBuffer = stream.writableLength;
 
 let i = 0;
-const MAX_LIMIT = 1000000000;
+const MAX_LIMIT = 100000;
 const writeData = () => {
   for (; i < MAX_LIMIT; i++) {
     // This method return `false` if internal buffer is completely filled
