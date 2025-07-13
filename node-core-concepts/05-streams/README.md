@@ -49,3 +49,17 @@ So, it is crucial to write data to the stream if and only if the internal buffer
 - High RSS (**Resident Set Size** - The portion of process memory that is held in RAM) which is not released back to the system, even if it is not required anymore.
 
 `stream.end(chunk)` = This method indicates the this is my last write, and the writing operation is completed. It will fire `finish` event which we can use for cleanup. Writing data after stream ends will throw an error = `Error [ERR_STREAM_WRITE_AFTER_END]: Write after end`.
+
+### Readable Streams
+
+![](/assets/2025-07-13-16-26-25.png)
+
+The readable streams can be in three states:
+
+- **Paused**: The stream is paused, and no data is being read. If data reading is not started or explicitly paused.
+- **Flowing**: The stream is flowing, and data is being read. If data reading is started, and paused stream is resumed.
+- **Ended**: The stream is ended, and no more data will be read. The `end` event is emitted when the stream is ended.
+
+> We should not write the data onto the disk with same speed we are reading. As mostly hard disks have more read speed than write speed. For example, in my system, reading speed is 900 MB/s and writing speed is 70 MB/s on benchmarking. So, it is really important to keep pausing and resuming the readable stream when writing simulataneously on filling of internal buffer and draining of it.
+
+![](/assets/2025-07-13-16-15-56.png)
