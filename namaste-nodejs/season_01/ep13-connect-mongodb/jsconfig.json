@@ -6,8 +6,8 @@
     "noEmit": true,
     "allowJs": true,
     "checkJs": true
-  }
-    "include": [
+  },
+  "include": [
     "src"
   ]
 }
