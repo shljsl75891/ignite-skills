@@ -42,6 +42,19 @@ const parition = Murmur_hash(Key) % number_of_partitions;
 - To ensure high availability and fault tolerance, Kafka replicates partitions across multiple brokers.
 - If a broker hosting a partition goes down, another broker with the replica of that partition can take over.
 
+![](/assets/2025-08-29-18-27-30.png)
+
+- Generally, all reads and writes go to the leader partition, and then followers pull data from the leader.
+
+> Followers = ISRs ( In-Sync Replicas )
+
+- If the leader goes down, one of the followers is elected as the new leader using a `Leader Election Algorithm`.
+- The replication factor is the number of copies of each partition that Kafka maintains across different brokers.
+- Just like partitions, the replicas of partitions are evenly distributed across brokers to balance the load.
+- It is an automatic process behind the scenes, and we developers don't have to worry about it.
+
+> For replication, Replication Factor must be greater than 1.
+
 ### Brokers
 
 > Where these Kafka topics and partitions reside ?
