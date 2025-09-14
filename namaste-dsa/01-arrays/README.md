@@ -12,4 +12,6 @@
 
 - Two pointer approaches (both in reverse and normal order)
 - Mathematics formulaes
-- Bit manipulation
+- Bit manipulation (Use `XOR` for removing duplicate values)
+
+> You can never think any tricky solution intitutively on first time :), if you haven't seen the similar problem before.
