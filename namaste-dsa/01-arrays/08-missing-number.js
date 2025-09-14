@@ -3,10 +3,10 @@
  * @return {number}
  */
 var missingNumber = function (nums) {
-  const numsSet = new Set(nums);
-  for (let i = 0; i <= nums.length; i++) {
-    if (!numsSet.has(i)) return i;
-  }
+  let n = nums.length;
+  const expectedSum = (n * (n + 1)) / 2;
+  let actualSum = nums.reduce((curr, sum) => curr + sum, 0);
+  return expectedSum - actualSum;
 };
 
 console.log(missingNumber([3, 0, 1]));
