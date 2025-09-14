@@ -6,27 +6,20 @@
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 var merge = function (nums1, m, nums2, n) {
-  let originalNums1 = [];
-  for (let i = 0; i < m; i++) {
-    originalNums1.push(nums1[i]);
-  }
-  let i = 0,
-    j = 0,
-    k = 0;
+  // We need to iterate in reverse order, so that we don't need to shift values of nums1 then
+  // and there is no risk of loosing any nums1 value
+  let i = m - 1;
+  let j = n - 1;
 
-  while (i < m && j < n) {
-    if (originalNums1[i] < nums2[j]) {
-      nums1[k++] = originalNums1[i++];
+  for (let k = m + n - 1; k >= 0; --k) {
+    // if nums2 exhausts, as nums1 is already sorted, so no need to do anything
+    if (j < 0) break;
+
+    if (i >= 0 && nums1[i] > nums2[j]) {
+      nums1[k] = nums1[i--];
     } else {
-      nums1[k++] = nums2[j++];
+      // if nums1 exhausts, we need to copy nums2 left values also
+      nums1[k] = nums2[j--];
     }
-  }
-
-  while (i < m) {
-    nums1[k++] = originalNums1[i++];
-  }
-
-  while (j < n) {
-    nums1[k++] = nums2[j++];
   }
 };
