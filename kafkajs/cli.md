@@ -22,3 +22,9 @@ kafka-console-consumer --bootstrap-server localhost:9092 --topic quickstart --fr
 kafka-console-consumer --bootstrap-server localhost:9092 --topic quickstart --group group-name
 kafka-console-consumer --bootstrap-server localhost:9092 --topic quickstart --offset earliest --partition 0
 ```
+
+#### Kafka Consumer Group CLI
+
+```sh
+kafka-consumer-groups --bootstrap-server localhost:9092 --group gp-1 --describe
+```
