@@ -1,5 +1,24 @@
-# Kafka Topic CLI
+# CLI Commands
 
-```bash
-kafka-topics --bootstrap-server apache-kakfka:9092 --help
+#### Kafka Topic CLI
+
+```sh
+kafka-topics --bootstrap-server localhost:9092 --list
+kafka-topics --bootstrap-server localhost:9092 --topic quickstart --create
+kafka-topics --bootstrap-server localhost:9092 --topic quickstart --create --partitions 3 --replication-factor 1
+```
+
+#### Kafka Producer CLI
+
+```sh
+kafka-console-producer --bootstrap-server localhost:9092 --topic quickstart
+```
+
+#### Kafka Consumer CLI
+
+```sh
+kafka-console-consumer --bootstrap-server localhost:9092 --topic quickstart
+kafka-console-consumer --bootstrap-server localhost:9092 --topic quickstart --from-beginning
+kafka-console-consumer --bootstrap-server localhost:9092 --topic quickstart --group group-name
+kafka-console-consumer --bootstrap-server localhost:9092 --topic quickstart --offset earliest --partition 0
 ```
