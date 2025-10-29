@@ -1,0 +1,18 @@
+{
+  "type": "module",
+  "prettier": {
+    "arrowParens": "avoid",
+    "singleQuote": true,
+    "bracketSpacing": false
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon -w src -e js -x \"clear && npm run start --silent\""
+  },
+  "dependencies": {
+    "kafkajs": "^2.2.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
