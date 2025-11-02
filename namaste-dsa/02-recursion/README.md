@@ -13,3 +13,5 @@ Base Case is essential to prevent infinite recursion and eventual stack overflow
 ![](/assets/2025-11-02-13-51-56.png)
 
 > Try to search "recursion" on Google and see what happens!
+
+![](/assets/2025-11-02-14-13-26.png)
