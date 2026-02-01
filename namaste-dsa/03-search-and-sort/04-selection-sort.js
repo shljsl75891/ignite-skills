@@ -7,9 +7,11 @@ for (let i = 0; i < arr.length; i++) {
       minimumIdx = j;
     }
   }
-  let temp = arr[i];
-  arr[i] = arr[minimumIdx];
-  arr[minimumIdx] = temp;
+  if (minimumIdx !== i) {
+    let temp = arr[i];
+    arr[i] = arr[minimumIdx];
+    arr[minimumIdx] = temp;
+  }
 }
 
 console.log("Resulting Array: ", arr);
