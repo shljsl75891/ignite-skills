@@ -38,4 +38,9 @@ Selection sort is just like thinking like normal brute force approach for sortin
 
 ### Insertion Sort
 
+The insertion sorting algorithm is inspired by the way we sort playing cards in our hands. We start with an empty left hand and the cards face down on the table. We then pick up the cards one at a time with our right hand and insert them into the correct position in our left hand. Similarly, in insertion sort, we divide the array into a sorted and an unsorted part. We take elements one by one from the unsorted part and insert them into the correct position in the sorted part. Gradually, all elements are moved to their correct position in the sorted part, and the entire array becomes sorted.
+
+- Time Complexity: O(n<sup>2</sup>)
+- Space Complexity: O(1)
+
 ### Merge Sort
