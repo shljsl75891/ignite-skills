@@ -44,3 +44,17 @@ The insertion sorting algorithm is inspired by the way we sort playing cards in 
 - Space Complexity: O(1)
 
 ### Merge Sort
+
+It is a **Divide and Conquer** algorithm. In DSA, this means we divide the bigger problem into smaller subproblems, and conquer the problem successively.
+
+![](/assets/2026-03-18-23-52-21.png)
+
+This small piece of code is doing many things beautifully using recursion.
+
+- Time Complexity: O(n log<sub>2</sub>n)
+
+> O(log<sub>2</sub>n) (divide) x O(n) (merging)
+
+- Space Complexity: O(n)
+
+> While merging, we are creating a temporary array to hold the sorted elements of given array size in worst case
