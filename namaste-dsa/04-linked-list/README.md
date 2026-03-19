@@ -1,0 +1,61 @@
+## Linked List
+
+Linked List is a linear datastructure. In this, each element is a node which contains data as well as reference of other similar nodes.
+
+#### Types of Linked List
+
+- Singly Linked List
+- Doubly Linked List
+
+![](/assets/2026-03-19-08-23-50.png)
+
+#### Differences
+
+| Linked List                        | Array                               |
+| ---------------------------------- | ----------------------------------- |
+| Non Contiguous                     | Contiguous                          |
+| Dynamic Size                       | Fixed Size                          |
+| Accessing any node O(n)            | Accessing element O(1)              |
+| Extra Memory required for pointers | No Extra Memory other than values   |
+| Insertion of new node is easy O(1) | Insertion of element is tricky O(n) |
+| Deletion of a node is easyO(1)     | Deletion of element is tricky O(n)  |
+| Value + Pointer                    | Value Only                          |
+
+We can create a linked list node using constructor functions in JS.
+
+> [!TIP]
+> In JavaScript, a constructor function is used with the `new` keyword to create and initialize new object instances.
+>
+> ```js
+> function Node(val) {
+>   // "this" here refers to a new empty object initialized by JS when `new` keyword is used, and its prototype "Object" prototype
+>   this.val = val;
+>   this.next = null;
+> }
+>
+> const node1 = new Node(5);
+> const node2 = new Node(7);
+>
+> node1.next = node2;
+>
+> console.log(node1);
+> ```
+>
+> **ES2015+ (Class Syntax) Equivalent:**
+>
+> ```js
+> // Although, the same thing is happening behind the scenes
+> class Node {
+>   constructor(val) {
+>     this.val = val;
+>     this.next = null;
+>   }
+> }
+>
+> const node1 = new Node(5);
+> const node2 = new Node(7);
+>
+> node1.next = node2;
+>
+> console.log(node1);
+> ```
