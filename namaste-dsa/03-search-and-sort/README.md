@@ -57,4 +57,4 @@ This small piece of code is doing many things beautifully using recursion.
 
 - Space Complexity: O(n)
 
-> While merging, we are creating a temporary array to hold the sorted elements of given array size in worst case
+> While merging, we are creating a temporary array to hold the sorted elements of given array size in worst case.
