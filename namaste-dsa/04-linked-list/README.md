@@ -72,4 +72,14 @@ Two-pointer technique using slow and fast pointers.
 ###### Intersection of two different linked lists
 
 ![](/assets/2026-03-20-12-40-38.png)
-The analogy basically is that if two runners have same destination point, but different distance to cover. Then, to make sure that they reach destination point at the same time with same speed, their corresponding starting points must be different as per above image. So, the runner who has to cover more distance need to be placed ahead of the runner who has to cover small distance. Eventually, the distance would be then same.
+The analogy basically is that if two runners have same destination point, but different distance cover. Then, to make sure that they reach destination point at the same time with same speed, their corresponding starting points must be different as per above image. So, the runner who has to cover more distance need to be placed ahead of the runner who has to cover small distance. Eventually, the distance would be then same.
+
+> [!TIP]
+> Use dummy node when operation might touch the head or when you want same logic for every node (avoid edge cases). Otherwise, without it, we would need special `if head...` case.
+> Typical problems using dummy
+>
+> - Remove Nth node from end
+> - Swap nodes in pairs
+> - Reverse nodes in k group
+> - Merge two sorted lists
+> - Partition list
