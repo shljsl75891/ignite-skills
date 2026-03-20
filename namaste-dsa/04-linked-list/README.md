@@ -68,3 +68,8 @@ Two-pointer technique using slow and fast pointers.
 
 - [Middle of Linked List](./03-middle-of-list.js)
 - [Linked List Cycle](./04-linked-list-cycle.js)
+
+###### Intersection of two different linked lists
+
+![](/assets/2026-03-20-12-40-38.png)
+The analogy basically is that if two runners have same destination point, but different distance to cover. Then, to make sure that they reach destination point at the same time with same speed, their corresponding starting points must be different as per above image. So, the runner who has to cover more distance need to be placed ahead of the runner who has to cover small distance. Eventually, the distance would be then same.
