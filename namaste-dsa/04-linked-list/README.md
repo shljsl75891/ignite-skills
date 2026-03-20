@@ -59,3 +59,12 @@ We can create a linked list node using constructor functions in JS.
 >
 > console.log(node1);
 > ```
+
+#### Patterns
+
+###### Floyd's Algorithm (Tortoise & Hare)
+
+Two-pointer technique using slow and fast pointers.
+
+- [Middle of Linked List](./03-middle-of-list.js)
+- [Linked List Cycle](./04-linked-list-cycle.js)
