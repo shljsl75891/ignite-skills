@@ -75,8 +75,8 @@ Two-pointer technique using slow and fast pointers.
 The analogy basically is that if two runners have same destination point, but different distance cover. Then, to make sure that they reach destination point at the same time with same speed, their corresponding starting points must be different as per above image. So, the runner who has to cover more distance need to be placed ahead of the runner who has to cover small distance. Eventually, the distance would be then same.
 
 > [!TIP]
-> Use dummy node when operation might touch the head or when you want same logic for every node (avoid edge cases). Otherwise, without it, we would need special `if head...` case.
-> Typical problems using dummy
+> Use sentinel (a soldier or guard whose job is to stand and keep watch.) or dummy node when operation might touch the head or when you want same logic for every node (avoid edge cases). Otherwise, without it, we would need special `if head...` case. This node's purpose is just to keep a watch for its next node. Remember to think about sentinel node, whenever you are performing delete operation on nodes.
+> Typical problems using dummy or sentinel node
 >
 > - Remove Nth node from end
 > - Swap nodes in pairs
