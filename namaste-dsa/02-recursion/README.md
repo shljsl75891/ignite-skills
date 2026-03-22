@@ -92,3 +92,11 @@ console.log(findRabbitCount(3));
 console.log(findRabbitCount(5));
 console.log(findRabbitCount(10));
 ```
+
+> [!NOTE]
+> Steps to solve any recursion problem:
+>
+> 1. Identify the base case(s).
+> 2. Identify the smaller problem
+> 3. Assume smaller problem will be resolved by recursive call.
+> 4. Use the result of smaller problem to solve the bigger problem.

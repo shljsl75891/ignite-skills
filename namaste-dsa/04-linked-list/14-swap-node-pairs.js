@@ -27,3 +27,25 @@ var swapPairs = function (head) {
   odd1.next = odd2;
   return head;
 };
+
+/** Recursive solution */
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var swapPairs = function (head) {
+  if (!head || !head.next) return head;
+  let temp = head.next;
+  let newHead = swapPairs(temp.next);
+  head.next = newHead;
+  temp.next = head;
+  return temp;
+};
