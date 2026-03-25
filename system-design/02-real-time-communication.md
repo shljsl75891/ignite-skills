@@ -58,14 +58,3 @@ The WebSocket protocol provides a full-duplex communication channel over a singl
 
 > [!IMPORTANT]
 > In all above communication methods, the connection can be terminated by either the client or server at any time, and the other party can detect the termination and handle it accordingly. For example, in WebSockets, if the connection is lost, the client can attempt to reconnect automatically, while in long polling, the client can simply send a new request to re-establish the connection.
-
-##### Monolith vs Microservices Architecture
-
-- In a monolithic architecture, there is a single, unified codebase that handles all aspects of the application. However, it can also lead to scalability issues and difficulties in maintaining and updating the application as it grows. Also, if any feature breaks, it can potentially affect the entire application, leading to downtime and a poor user experience.
-  - It is easy to develop, test and deploy but as application grows, they can become disadvantage easily.
-  - If a single small feature is updated, the entire application needs to be redeployed, which can lead to downtime and potential issues with other parts of the application.
-  - Having multiple replica nodes of same deployed codebase doesn't make it a microservices architecture, it is still a monolith with multiple instances.
-
-- In contrast, a microservices architecture breaks down the application into smaller, independent services that can be developed, deployed, and scaled independently. Each service is responsible for a specific functionality and communicates with other services through APIs. This allows for greater flexibility, scalability, and maintainability of the application.
-  - If one service needs to be updated, it can be done without affecting the other services, and new features can be added without impacting the existing functionality.
-  - If any service fails, it doesn't bring down the entire application, as other services can continue to operate independently.
