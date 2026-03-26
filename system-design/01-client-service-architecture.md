@@ -98,3 +98,7 @@ For terminating connection, anyone can initiate the termination process (either 
 - Once the secure connection is established, the data transmitted between the client and the server is encrypted using symmetric encryption, which is faster than asymmetric encryption.
 
 ![](/assets/2026-03-22-22-22-08.png)
+
+> [!TIP]
+> **TCP Head of Lines (HOL Blocking)**: In TCP, if a packet is lost or delayed, all subsequent packets must wait until the lost packet is retransmitted and received successfully. This can lead to increased latency and reduced performance, especially in high-latency or lossy network conditions.
+> In HTTP/1.1, all multiple requests over "keep-alive" connection are sent sequentially, so if one request is delayed or lost, it can block the subsequent requests, leading to increased latency and reduced performance. In HTTP/2, multiplexing allows multiple requests and responses to be sent simultaneously over a single connection, but still if any packet is lost, all simultaneous response streams has to be blocked.
