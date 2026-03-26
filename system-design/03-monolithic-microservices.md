@@ -29,3 +29,21 @@
 
 > [!IMPORTANT]
 > There are also patterns for deciding whether we should use a share database for all micro services or each microservice should have its own database. It depends on the use case and requirements of the application. If the microservices are tightly coupled and require frequent data sharing, a shared database may be more efficient. However, if the microservices are loosely coupled and can operate independently, it may be better to have separate databases for each service to improve scalability and reduce the risk of data corruption.
+
+## Remote Procedure Calls (RPC)
+
+- In a microservices architecture, services often need to communicate with each other to exchange data and perform operations. One common way to achieve this is through Remote Procedure Calls (RPC). RPC allows a service to call a function or method in another service as if it were a local function call, abstracting away the complexities of network communication.
+- The most famous RPC framework is gRPC, which is an open-source RPC framework developed by Google. It uses HTTP/2 for transport and **Protocol Buffers** for serialization, making it efficient and suitable for high volume data transmission between microservices.
+
+![](/assets/2026-03-26-19-09-33.png)
+
+> The gRPC is not natively supported in browsers. That's why still REST APIs are widely used for communication between frontend and backend services, while gRPC is often used for communication between backend microservices. The gRPC-Web is a JavaScript client library that allows web applications to communicate with gRPC services, but it doesn't have full support for all gRPC features and have certain limitations. Although browser support HTTP/2, it doesn't support all features of gRPC.
+
+![](/assets/2026-03-26-19-16-24.png)
+
+## WebHooks
+
+![](/assets/2026-03-26-19-20-07.png)
+
+- We can use webhooks to use event driven notifications by third party systems instead of polling for updates.
+- We need to register a callback URL with the third party system, and whenever there is an event or update, the third party system will send an HTTP request to the registered callback URL with the relevant data. This allows our application to receive real-time updates without the need for continuous polling, which can be inefficient and resource-intensive.
