@@ -19,3 +19,24 @@ var isAnagram = function (s, t) {
   }
   return true;
 };
+
+/** Implementation using single map */
+/**
+ * @param {string[]} strs
+ * @return {string[][]}
+ */
+function isAnagramPair(s, t) {
+  if (s.length !== t.length) return false;
+  let charCountMap = {};
+  for (let i = 0; i < s.length; i++) {
+    charCountMap[s[i]] = (charCountMap[s[i]] ?? 0) + 1;
+  }
+  for (let i = 0; i < t.length; i++) {
+    if (!charCountMap[t[i]] || charCountMap[t[i]] === 0) {
+      return false;
+    } else {
+      charCountMap[t[i]]--;
+    }
+  }
+  return true;
+}
