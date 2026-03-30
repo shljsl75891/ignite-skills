@@ -9,3 +9,4 @@
 - [Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists) => [Solution](https://github.com/shljsl75891/ignite-skills/blob/main/namaste-dsa/04-linked-list/06-interseciton-of-lists.js)
 - [Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list) => [Solution](https://github.com/shljsl75891/ignite-skills/blob/main/namaste-dsa/04-linked-list/08-delete-nth-node-from-end.js)
 - [Add Two Numbers](https://leetcode.com/problems/add-two-numbers) => [Solution](https://github.com/shljsl75891/ignite-skills/blob/main/namaste-dsa/04-linked-list/11-add-two-numbers.js)
+- [Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation) => [Solution](https://github.com/shljsl75891/ignite-skills/blob/main/namaste-dsa/06-stacks-queues/07-evaluate-expressions.js)
