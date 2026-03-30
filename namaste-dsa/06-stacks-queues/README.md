@@ -31,3 +31,13 @@
 | Random Access | ❌           | ❌         | ✅              | ❌           | ✅        |
 | Insert/Delete | Top Only     | Ends Only  | Anywhere (Slow) | Anywhere     | By Key    |
 | Use Case      | Backtracking | Scheduling | General purpose | Dynamic size | Lookup    |
+
+> [!TIP]
+> Whenever you face any problem related to following:
+>
+> - Next Greater Element
+> - Next Smaller Element
+> - Previous Greater Element
+> - Previous Smaller Element
+>
+> Always consider solving these using stacks. These problems can be solved efficiently using stacks in O(n) time complexity, which is much better than the brute-force approach of O(n<sup>2</sup>).
