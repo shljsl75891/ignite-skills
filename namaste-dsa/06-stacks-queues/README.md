@@ -40,4 +40,5 @@
 > - Previous Greater Element
 > - Previous Smaller Element
 >
-> Always consider solving these using stacks. These problems can be solved efficiently using stacks in O(n) time complexity, which is much better than the brute-force approach of O(n<sup>2</sup>).
+> Always consider solving these using stacks. These problems can be solved efficiently using stacks in O(n) time complexity, which is much better than the brute-force approach of O(n<sup>2</sup>). We use mainly monotonic stacks to solve these problems, which are stacks that maintain their elements in a specific order (either increasing or decreasing) by keep removing out of order (useless) elements at the same time. Please see the following light pole analogy for better understanding of monotonic stacks.
+> ![](/assets/2026-03-31-09-34-30.png)
