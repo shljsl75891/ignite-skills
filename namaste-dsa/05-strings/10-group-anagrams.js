@@ -34,3 +34,28 @@ function isAnagramPair(s, t) {
   }
   return true;
 }
+
+/** optimized implementation using linear time complexity */
+/**
+ * @param {string[]} strs
+ * @return {string[][]}
+ */
+var groupAnagrams = function (strs) {
+  let anagramMap = new Map();
+  for (let i = 0; i < strs.length; ++i) {
+    let str = strs[i],
+      freqArr = Array(26).fill(0);
+    for (let i = 0; i < str.length; ++i) {
+      let charPos = str[i].charCodeAt(0) - "a".charCodeAt(0);
+      ++freqArr[charPos];
+    }
+    // it is important to add any custom character because any letter can be appeared more than 9 times
+    const key = freqArr.join("#");
+    if (anagramMap.has(key)) {
+      anagramMap.get(key).push(strs[i]);
+    } else {
+      anagramMap.set(key, [strs[i]]);
+    }
+  }
+  return [...anagramMap.values()];
+};
