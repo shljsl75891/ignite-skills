@@ -38,3 +38,28 @@ var nextGreaterElements = function (nums) {
   }
   return result;
 };
+
+/** Circular Array ==> Always double the array, and the complexity of circular will be removed */
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var nextGreaterElements = function (nums) {
+  let N = nums.length;
+  let result = Array(N).fill(-1),
+    stack = [nums[N - 1]];
+
+  for (let i = N * 2 - 2; i >= 0; i--) {
+    while (stack.length > 0) {
+      let top = stack[stack.length - 1];
+      if (nums[i % N] < top) {
+        result[i % N] = top;
+        break;
+      } else {
+        stack.pop();
+      }
+    }
+    stack.push(nums[i % N]);
+  }
+  return result;
+};
