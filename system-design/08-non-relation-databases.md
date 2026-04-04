@@ -28,3 +28,86 @@ Data is stored on disks in contiguous blocks (assume disk to be circular tracks 
 - This uses B-tree (Balanced binary tree)
 
 ![](/assets/2026-04-04%20at%2011.35.00%20AM.png)
+
+> As number of level increase, the more write operations become expensive, because each level of index needs to be updated whenever the data changes.
+
+## MongoDB
+
+| Property               | Value                                                                                                                           |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Data Model             | Binary JSON (BSON)                                                                                                              |
+| Schema Flexibility     | Flexible                                                                                                                        |
+| Availability           | By default, it prioritise the availability over consistency, it is eventually consistent, although this can be tuned            |
+| Scalability            | Horizontally scalable                                                                                                           |
+| Read/Write Performance | Optimized for high read heavy operations due to indexing, caching and locking. Due to locking, write performance can be slower. |
+
+> [!TIP]
+> Binary JSON = BSON is a binary representation of JSON-like documents. The JSON is stored in compact and binary encoded format instead of plain text. This is not readable by humans.
+
+## TSDB (Time Series Database)
+
+_Use cases_: IoT, monitoring, financial data, etc. Eg. Prometheus, InfluxDB etc.
+
+| Property           | Value                                                                                            |
+| ------------------ | ------------------------------------------------------------------------------------------------ |
+| Data Model         | Time as key dimension                                                                            |
+| Schema Flexibility | Flexible                                                                                         |
+| Indexing           | on time key (using B-trees and LSM trees) 2026-04-04 at 11.25.00 AM.png                          |
+| Querying           | Optimized for time-based queries (e.g., range queries, aggregations like sum, avg, min max etc.) |
+| Scalability        | Horizontally scalable (clustering)                                                               |
+| Availability       | By default, it prioritise the availability over consistency                                      |
+
+> [!TIP]
+>
+> - In casandra, it is write heavy because of LSM tree, which is optimized for write performance. When a write operation occurs, the data is first written to an in-memory structure called a `memtable`.
+> - Periodically, the memtable is flushed to disk as an immutable file called an `SSTable` (Sorted String Table).
+
+## Graph Based Database
+
+![](/assets/2026-04-04-12-06-29.png)
+
+_Use cases_: Social networks, recommendation systems, fraud detection, etc. Eg. Neo4j, Amazon Neptune etc.
+
+- **Nodes**: Represent entities (e.g., people, products, etc.)
+- **Edges**: Represent relationships between nodes (e.g., "friend of", "purchased", etc.)
+- **Properties**: Both nodes and edges can have properties (key-value pairs).
+
+Two Types of Indexing:
+
+- **Node Indexing**: Indexes on node properties to quickly find nodes based on their attributes.
+- **Edge Indexing**: Indexes on edge properties to quickly find relationships based on their attributes.
+
+> [!IMPORTANT]
+> Graph databases are ACID compliant, which means they provide strong consistency guarantees. This is because graph databases often require complex transactions that involve multiple nodes and edges, and ensuring consistency is crucial for maintaining the integrity of the graph data.
+
+- **CYPHER** is a query language for querying graph databases, similar to SQL for relational databases.
+- **Read / Write Performance**: Graph databases are optimized for read-heavy workloads.
+
+## Cassandra
+
+![](/assets/2026-04-04-12-13-36.png)
+
+- It is a columnar database.
+- It is designed for write heavy operations
+- The query language used is CQL (Cassandra Query Language)
+
+> [!CAUTION]
+>
+> - As, it is a columnar database. It gives compilation error if we try to query the data in row-wise-manner.
+> - It also doesn't have support for JOINS. That's also a reason behind its speed.
+> - We mostly stored data in denormalized form, which means we duplicate data to avoid the need for joins.
+
+#### Consistent Hashing
+
+- It uses the concept of consistent hashing to distribute data across multiple nodes in a cluster.
+- Each node is assigned a range of hash values, and data is stored on the node responsible for the corresponding hash value.
+
+> [!IMPORTANT]
+> Cassandra also asks us about number of replicas (Replication Factor) and number of nodes to read/write (Consistency Level) for a query. This is because Cassandra is designed to be eventually consistent, which means that there may be a delay between when data is written and when it becomes visible to read operations. By specifying the consistency level, we can control how many replicas need to acknowledge a write operation before it is considered successful, and how many replicas need to respond to a read operation before it returns a result. This allows us to balance the trade-off between consistency and availability based on our application's requirements.
+>
+> - The consitency levels possible:
+>   - **ONE**: Only one replica needs to acknowledge the write operation for it to be considered successful.
+>   - **QUORUM**: Half of the replicas need to acknowledge (50% consistency)
+>   - **ALL**: All replicas need to acknowledge the write operation for it to be considered successful.
+>
+> This consistency level can be indepently set for read and write operations. For example, we can set a lower consistency level for writes (e.g., ONE) to achieve higher write performance, while setting a higher consistency level for reads (e.g., QUORUM) to ensure that we get the most up-to-date data when reading, or vice versa. This flexibility allows us to optimize for different use cases and workloads based on our application's requirements.
