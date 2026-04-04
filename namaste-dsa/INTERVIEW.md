@@ -13,3 +13,4 @@
 - [Next Greater Element I](https://leetcode.com/problems/next-greater-element-i) => [Solution](https://github.com/shljsl75891/ignite-skills/blob/main/namaste-dsa/06-stacks-queues/08-next-greater-element-1.js)
 - [Isomorphic Strings](https://leetcode.com/problems/isomorphic-strings) => [Solution](https://github.com/shljsl75891/ignite-skills/blob/main/namaste-dsa/05-strings/10-isomorphic-strings.js)
 - [Group Anagrams](https://leetcode.com/problems/group-anagrams) => [Solution](https://github.com/shljsl75891/ignite-skills/blob/main/namaste-dsa/05-strings/10-group-anagrams.js)
+- [Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array) => [Solution](https://github.com/shljsl75891/ignite-skills/blob/main/namaste-dsa/07-binary-search/03-search-in-rotated-sorted.js)

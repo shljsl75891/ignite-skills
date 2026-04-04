@@ -40,3 +40,35 @@ var search = function (nums, target) {
 
   return -1;
 };
+
+/** Optimized implementation in 1 binary search */
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var search = function (nums, target) {
+  let low = 0,
+    high = nums.length - 1;
+  while (low <= high) {
+    let mid = low + parseInt((high - low) / 2);
+    if (target === nums[mid]) return mid;
+    if (nums[low] <= nums[mid]) {
+      // this part is sorted
+      if (target < nums[mid] && target >= nums[low]) {
+        high = mid - 1;
+      } else {
+        low = mid + 1;
+      }
+    } else {
+      // this part is unsorted
+      if (target <= nums[high] && target > nums[mid]) {
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+  }
+
+  return -1;
+};
