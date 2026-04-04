@@ -87,9 +87,13 @@ Two Types of Indexing:
 
 ![](/assets/2026-04-04-12-13-36.png)
 
-- It is a columnar database.
+- It is a wide column database.
+
+> Wide column databases store data in tables with rows and columns, but unlike relational databases, each row can have a different set of columns.
+
 - It is designed for write heavy operations
 - The query language used is CQL (Cassandra Query Language)
+- It has flexible schema which means we can add new columns to a table without affecting existing rows.
 
 > [!CAUTION]
 >
@@ -111,3 +115,11 @@ Two Types of Indexing:
 >   - **ALL**: All replicas need to acknowledge the write operation for it to be considered successful.
 >
 > This consistency level can be indepently set for read and write operations. For example, we can set a lower consistency level for writes (e.g., ONE) to achieve higher write performance, while setting a higher consistency level for reads (e.g., QUORUM) to ensure that we get the most up-to-date data when reading, or vice versa. This flexibility allows us to optimize for different use cases and workloads based on our application's requirements.
+
+###### Difference between Wide Column DB and other non relational databases
+
+- **Columnar (Column-Oriented)**: If you have a table with 100 columns but only query 2, a columnar database only reads those 2 files from the disk. This makes it incredibly fast for "big picture" questions like "What was the average sale price last year?".
+- **Wide-Column (Column-Family)**: These are essentially "row-oriented databases on steroids". They use a row key to quickly find a specific record and then access its associated columns. They are better for "individual-level" data, such as a user's profile where some users have a lot of data and others have very little.
+
+> - Wide column databases support either relatively flat data or only till 1 to 2 levels of nesting, while document databases can support deeper level of nesting.
+> - Both wide column and document databases access data row-wise. But, wide column databases should be preffered for write heavy operations, while document databases should be preffered for read heavy operations because wide column use LSM trees optimized for write performance, while document databases use B-trees optimized for read performance.
