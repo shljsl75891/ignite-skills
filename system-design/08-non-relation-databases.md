@@ -2,7 +2,7 @@
 
 Data is stored on disks in contiguous blocks (assume disk to be circular tracks which is divided into sectors). Data is accessed and stored page-wise. A page is a fixed-length contiguous block of virtual memory. If any data is to be accessed, the entire page containing that data is read into memory (for faster processing).
 
-![alt text](image.png)
+![](/assets/2026-04-04%20at%2011.25.00%20AM.png)
 
 #### Row DB vs Column DB
 
@@ -27,4 +27,4 @@ Data is stored on disks in contiguous blocks (assume disk to be circular tracks 
 - The first level index contains pointers to the second level index, which in turn contains pointers to the actual data.
 - This uses B-tree (Balanced binary tree)
 
-![alt text](./../assets/2026-04-04%20at%2011.35.00 AM.png)
+![](/assets/2026-04-04%20at%2011.35.00%20AM.png)
