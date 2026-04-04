@@ -85,14 +85,14 @@ It is important to know that vertical scaling has limitations and can be expensi
 
 Breaking large database into smaller ones.
 
-![](/assets/2026-04-01-23-19-14.png)
+![Types of Partitioning](/assets/2026-04-01-23-19-14.png)
 
 > Huge disadvantage of database partitioning is that joining data across partitions is expensive and complex. It can lead to performance issues and increased latency.
-> ![](/assets/2026-04-01-23-40-53.png)
+> ![Disadvantage](/assets/2026-04-01-23-40-53.png)
 
 > Horizontal partitioning is also known as sharding.
 
-![](/assets/2026-04-01-23-26-10.png)
+![Sharding types](/assets/2026-04-01-23-26-10.png)
 
 There are two ways of physical sharding:
 
