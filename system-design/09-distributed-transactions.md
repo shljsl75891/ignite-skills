@@ -63,6 +63,138 @@ The problems when multiple transactions are running concurrently are:
 > [!IMPORTANT]
 > In postgresql, due to **_MVCC_** (Multi Version Concurrency Control) implementation, the default isolation level is `Read Committed` and it does not support `Read Uncommitted` isolation level. It acts just like `Read Committed` in postgresql. Also, due to the same reason, the `Repeatable Read` isolation level in postgresql does not allow phantom reads as well. But, according to SQL standard, `Repeatable Read` isolation level allows phantom reads.
 
+#### Database Normalization
+
+Database normalization means: decompose a big table into smaller tables until each table follows single responsibility principle. Each table should represent one entity or concept.
+
+Why we do it:
+
+- Reduce duplicate data
+- Prevent update/insert/delete anomalies
+- Keep constraints clear with PK/FK
+
+Think of forms as step-by-step cleanup: 1NF -> 2NF -> 3NF -> BCNF.
+
+##### 1NF (First Normal Form)
+
+Simple words: one cell = one value. No comma-separated lists.
+
+Denormalized table (`customers_raw`) with multi-value column:
+
+| customer_id | customer_name | phone_numbers    |
+| ----------- | ------------- | ---------------- |
+| C1          | Aman          | 9991111, 9992222 |
+| C2          | Neha          | 8881111          |
+
+Problem:
+
+- `phone_numbers` has multiple values in one cell. Hard to search, update, or delete a single number cleanly.
+
+Normalized form (1NF) — same table, just split into atomic rows:
+
+`customers`
+
+| customer_id | customer_name | phone_number |
+| ----------- | ------------- | ------------ |
+| C1          | Aman          | 9991111      |
+| C1          | Aman          | 9992222      |
+| C2          | Neha          | 8881111      |
+
+How it helps:
+
+- One value per cell. Add/remove/query one phone number without touching others.
+
+##### 2NF (Second Normal Form)
+
+Simple words: if table key is composite (made of 2+ columns), every non-key column must depend on full key, not just half of it. If your key is single column, you're already at 2NF (as long as you're in 1NF).
+
+Denormalized table (`order_items_raw`) with composite key (`order_id`, `product_id`):
+
+| order_id | product_id | qty | order_date | product_name | product_price |
+| -------- | ---------- | --- | ---------- | ------------ | ------------- |
+| O1       | P1         | 1   | 2026-04-01 | Keyboard     | 2500          |
+| O1       | P2         | 2   | 2026-04-01 | Mouse        | 800           |
+| O2       | P1         | 1   | 2026-04-02 | Keyboard     | 2500          |
+
+Problems:
+
+- Composite key = (`order_id`, `product_id`).
+- `order_date` depends only on `order_id` (half of the key) — not the full key.
+- `product_name`, `product_price` depend only on `product_id` (other half) — not the full key.
+- Only `qty` correctly depends on the full key (`order_id`, `product_id`).
+
+Normalized form (2NF split):
+
+`orders`
+
+| order_id | order_date |
+| -------- | ---------- |
+| O1       | 2026-04-01 |
+| O2       | 2026-04-02 |
+
+`products`
+
+| product_id | product_name | product_price |
+| ---------- | ------------ | ------------- |
+| P1         | Keyboard     | 2500          |
+| P2         | Mouse        | 800           |
+
+`order_items`
+
+| order_id | product_id | qty |
+| -------- | ---------- | --- |
+| O1       | P1         | 1   |
+| O1       | P2         | 2   |
+| O2       | P1         | 1   |
+
+How it helps:
+
+- Each non-key column now depends on the full primary key of its own table.
+- Update order date in one place. Update product price in one place.
+
+##### 3NF (Third Normal Form)
+
+Simple words: non-key column should not depend on another non-key column.
+
+Denormalized table (`employees_raw`):
+
+| emp_id | emp_name | dept_id | dept_name | dept_location |
+| ------ | -------- | ------- | --------- | ------------- |
+| E1     | Ravi     | D10     | Sales     | Mumbai        |
+| E2     | Priya    | D10     | Sales     | Mumbai        |
+| E3     | Karan    | D20     | Finance   | Delhi         |
+
+Problem (transitive dependency):
+
+- `emp_id -> dept_id -> dept_name, dept_location`.
+- If Sales location changes, many employee rows must be updated.
+
+Normalized form (3NF split):
+
+`departments`
+
+| dept_id | dept_name | dept_location |
+| ------- | --------- | ------------- |
+| D10     | Sales     | Mumbai        |
+| D20     | Finance   | Delhi         |
+
+`employees`
+
+| emp_id | emp_name | dept_id |
+| ------ | -------- | ------- |
+| E1     | Ravi     | D10     |
+| E2     | Priya    | D10     |
+| E3     | Karan    | D20     |
+
+How it helps:
+
+- Department facts stored once.
+- No transitive dependency in `employees`.
+
+##### BCNF (Boyce-Codd Normal Form)
+
+<TODO>
+
 #### Row Level Locking mechanism in relational databases
 
 There are two types of locks in relational databases:
