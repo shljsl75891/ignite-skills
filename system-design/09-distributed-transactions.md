@@ -7,18 +7,29 @@
 
 Most of the relational database systems support ACID properties. However, some non-relational databases offer partial support for ACID properties such as Redis, DynamoDB, Cassandra etc.
 
-| Property        | Definition                                                                                  |
-| --------------- | ------------------------------------------------------------------------------------------- |
-| **Atomicity**   | All operations in a transaction succeed or none do. No partial updates.                     |
-| **Consistency** | Transaction takes the DB from one valid state to another, preserving all rules/constraints. |
-| **Isolation**   | Concurrent transactions execute independently without interfering with each other.          |
-| **Durability**  | Once committed, results should be permanent and must not be lost even in any case           |
+| Property        | Definition                                                                                                                                          |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Atomicity**   | All operations in a transaction succeed or none do. No partial updates. (The transaction must behave same way as it was executed in a single query) |
+| **Consistency** | Transaction takes the DB from one valid state to another, preserving all rules/constraints.                                                         |
+| **Isolation**   | Concurrent transactions execute independently without interfering with each other.                                                                  |
+| **Durability**  | Once committed, results should be permanent and must not be lost even in any case                                                                   |
+
+> Every relational database has their own way to implement these ACID properties. But, at the end of day, there all are ACID compliant.
 
 ### Isolation Levels
+
+The problems when multiple transactions are running concurrently are:
+
+- **Dirty Read**: A transaction reads data that has been modified by another transaction but not yet committed. If the other transaction rolls back, the first transaction will have read invalid data.
+- **Non-repeatable Read**: A transaction reads the same row twice and gets different data each time because another transaction has modified the data in between the two reads.
+- **Phantom Reads**: A transaction re-executes a query returning a set of rows that satisfy a search condition and finds that the set of rows satisfying the condition has changed due to another recently-committed transaction. This happens when committed transaction had inserted or deleted rows following the search condition.
 
 ##### Serializable
 
 > Serializable isolation sab transactions ko ek-ke-baad-ek chalne jaisa banata hai, koi blocking nahi hoti. Agar isse lagta ki concurrent execution galat result (aesa result jo agr wo transactions sequentially chlti kisi bhi way mei, to kabhi ni aa paata) de raha hai toh wo transaction fail kar deta hai, tumhe retry karna padega.
+
+- This is the most strict isolation level that provides the highest level of consistency.
+- In this isolation level, transactions are executed in a way that they appear to be executed sequentially, even if they are executed concurrently. If the database detects that the concurrent execution of transactions could lead to an anomaly (a result that would not occur if the transactions were executed sequentially in any order), it will abort one of the transactions and require it to be retried.
 
 ![Serializable](/assets/Serializable.gif)
 
@@ -28,19 +39,29 @@ Most of the relational database systems support ACID properties. However, some n
 
 > Ek transaction mei jitni mrji baar read kro, hmesha same dikhega. Regardless koi or kuch bhi commit krta rhe
 
+- In this isolation level, if a transaction reads a row, it will see the same data for that row for the duration of the transaction, even if other transactions are modifying that row concurrently after committing. However, it does not prevent phantom reads.
+- This isolation level prevents dirty reads and non-repeatable reads but allows phantom reads.
+
 ![Repeatable_Read](/assets/Repeatable_Read.gif)
 
 ##### Read Committed
 
-> Jb koi another transaction commit kuch commit krde, tbhi current running transaction ko updated data dikhe
+> Jb koi another transaction kuch commit krde, tbhi current running transaction wo changes dekh paaye.
+
+- In this isolation level, a transaction can only see the changes made by other transactions after they have been committed. This means that if a transaction reads a row, it may see different data if another transaction modifies that row and commits before the first transaction reads it again. This isolation level prevents dirty reads but allows non-repeatable reads and phantom reads.
 
 ![Read_Committed](/assets/Read_committed.gif)
 
 ##### Read Uncommitted
 
-> Koi bhi transaction commit ho ya na ho, sbka dirty data padh lo. Jaise whatsapp forward — verify kiye bina hi sabko bhej do.
+> Koi bhi transaction commit ho ya na ho, sbka dirty data padh lo. Sbke changes prhlo, chahe wo commit ho ya na ho.
 
-All concurrently running transactions can easily interfere with one another even any is not committed or rollbacked yet.
+- This is the least strict isolation level that allows transactions to read uncommitted changes made by other transactions.
+- This means that a transaction can see dirty reads, non-repeatable reads, and phantom reads having all possible anomalies.
+- All concurrently running transactions can easily interfere with one another even any is not committed or rollbacked yet.
+
+> [!IMPORTANT]
+> In postgresql, due to **_MVCC_** (Multi Version Concurrency Control) implementation, the default isolation level is `Read Committed` and it does not support `Read Uncommitted` isolation level. It acts just like `Read Committed` in postgresql. Also, due to the same reason, the `Repeatable Read` isolation level in postgresql does not allow phantom reads as well. But, according to SQL standard, `Repeatable Read` isolation level allows phantom reads.
 
 #### Row Level Locking mechanism in relational databases
 
@@ -63,8 +84,6 @@ This locking mechanism is useful for the cases where we need higher number of wr
 | **Abort**          | —                 | The transaction is simply aborted/retried on conflict                                    |
 
 This locking mechanism is useful for the cases where we need lower number of write operations because it allows for higher concurrency and better performance. However, it can lead to conflicts and data inconsistency if not managed properly.
-
-#### Normalization
 
 ## Why there is need for distributed transactions ?
 
@@ -134,9 +153,10 @@ This is an extension of 2PC that addresses the **blocking problem** when coordin
 - In this, we distribute the transaction into a series of smaller, independent transactions (called "sagas") that can be executed asynchronously across multiple services with the use of message queues.
 - In this all transactions happen asynchronously using event drive architecture,
 - There are two types of SAGA patterns:
-  - **Orchestration**: There is a central orchestrator that manages the flow of the transaction. The orchestrator sends commands to each service to perform its part of the transaction and waits for responses before proceeding to the next step.
-    - Centralized
-    - Single Point of failure
+
+- **Orchestration**: There is a central orchestrator that manages the flow of the transaction. The orchestrator sends commands to each service to perform its part of the transaction and waits for responses before proceeding to the next step.
+  - Centralized
+  - Single Point of failure
 
 ![Orchestrater SAGA](/assets/2026-04-05-17-45-37.png)
 
