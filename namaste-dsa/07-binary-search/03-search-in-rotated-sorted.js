@@ -54,14 +54,14 @@ var search = function (nums, target) {
     let mid = low + parseInt((high - low) / 2);
     if (target === nums[mid]) return mid;
     if (nums[low] <= nums[mid]) {
-      // this part is sorted
+      // left part is sorted
       if (target < nums[mid] && target >= nums[low]) {
         high = mid - 1;
       } else {
         low = mid + 1;
       }
     } else {
-      // this part is unsorted
+      // right part is unsorted
       if (target <= nums[high] && target > nums[mid]) {
         low = mid + 1;
       } else {
