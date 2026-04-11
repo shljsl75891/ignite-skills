@@ -62,6 +62,13 @@ For terminating connection, anyone can initiate the termination process (either 
 
 ##### HTTP (Hypertext Transfer Protocol)
 
+HTTP is an application layer protocol used for transmission of hypermedia documents between a client and a server. It was primarily designed for transmission of hypertext documents, but it can also be used for other types of data. HTTP is a stateless protocol, which means that each request is independent and does not require any state to be retained.
+
+> [!NOTE]
+>
+> - Hypertext is a text containing links (hyperlinks) to other text documents, allowing non linear navigation.
+> - Hypermedia is extension of hypertext, which includes not only text but also images, videos, audio, etc. connected through hyperlinks.
+
 **Evolution of HTTP**
 
 - HTTP/0.9: This was the first version released in 1991
@@ -72,6 +79,9 @@ For terminating connection, anyone can initiate the termination process (either 
   - Support for multiple methods (GET, POST, HEAD, etc.)
   - Introduction of headers and status codes
   - Support for MIME types
+
+- MIME types or media types represent the format of the data being transmitted. MIME type mostly consists of 2 parts: a type and a subtype, separated by a slash.
+- It allows client and server to identify the type of data being transmitted. For example, "text/html" represents an HTML document, "image/jpeg" represents a JPEG image, and "application/json" represents a JSON data.
 
 > [!NOTE]
 >
@@ -88,7 +98,7 @@ For terminating connection, anyone can initiate the termination process (either 
 - HTTP/3: Released in 2020, it is the latest version of HTTP and is built on top of the QUIC protocol, which is designed to improve performance and security. HTTP/3 includes several improvements over HTTP/2, including:
   - Faster connection establishment with reduced latency
   - Improved performance in high-latency and lossy network conditions
-  - Enhanced security features
+  - Enhanced security features (The reason behind this is that QUIC mandates the use of TLS 1.3, ensuring encryption by default)
 
 ##### HTTPS (Hypertext Transfer Protocol Secure)
 
