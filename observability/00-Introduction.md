@@ -38,7 +38,7 @@ and many more such questions. The observability Does help us to clearly see what
 - Another definition of observability popularly being promoted by SaaS developer tool vendors, is that the observability is just a synonym for _telemetry_, indistinguishable from monitoring.
 - Observability is not just about three pillars of monitoring: `Metrics`, `Logs`, and `Traces`. They promote these definitions solely to sell their tools.
 
-Instead, the observability requir,s evolving the way we think about gathering the data needed to debug effectively, and how we use that data to understand the system.
+Instead, the observability requires evolving the way we think about gathering the data needed to debug effectively, and how we use that data to understand the system.
 
 ##### What is wrong with traditional monitoring ?
 
@@ -70,3 +70,28 @@ Historically, in monolithic applications, unpredictable failures were relatively
 
 > [!IMPORTANT]
 > Debugging with observability is about preserving as much of the context around any given request as possible, so that we can reconstruct the environment and circumstances that triggered the novel failure mode.
+
+## Role of Cardinality and Dimensionality in Observability
+
+- **Cardinality** is the number of unique values that a particular attribute can have. In the context of databases, it refers to the uniqueness of data valies contained in a column. High cardinality means that there are many unique values, while low cardinality means that there are few unique values. For example, UUID is a high cardinality attribute because it can have a large number of unique values, while a boolean attribute is a low cardinality attribute because it can only have two unique values.
+  - High cardinality attributes are essential for observability because they allow us to identify and track individual users, sessions, or requests.
+  - Metrics based tooling can only deal with low cardinality attributes, which place unintended restrictions on the ways that data can be interogated.
+
+- **Dimensionality** refers to the number of attributes or features that are used to describe a particular entity or object.
+  - In observable systems, telemetry data is generated as an wide structured event. They are wide because they can and should contains 100s or even 1000s of key-value pairs (dimensions).
+  - More dimensions means wider the event, the more richer context captured when the event occurred, and thus more we can discover what happened in the system when we are trying to debug an issue.
+
+> [!NOTE]
+> Observeability is often mischaracterised as being achieved when you have three pillars of different elementary data types (Metrics, Traces and Logs). However, if we must have three pillars of observability, then what they should be is tooling that it supports high cardinality, high dimensionality and explorability.
+
+#### How it helps in debugging ?
+
+- Observability encourages us to capture as much context as possible, which allows us to ask any question about our system at some point down the line.
+- Observability tools are specifically designed to query against high cardinality and high dimensionality data to interrogate the data in any number of aribitrary ways, which is essential for debugging complex systems.
+
+> A key function of observable systems is the ability to explore your system in open-ended ways, because observeability means that you can understand and explain any state your system can get into no matter how novle or bizarre without shipping and new code.
+
+> [!CAUTION]
+> Monitoring takes a reactive approach — it only catches problems you've already predicted and added checks for. If something unexpected breaks, you have to see it happen first, then investigate what went wrong, and wait to see the same issue again before you can add a proper check for it. This cycle is slow and frustrating. Observability is different — it lets you ask any question about your system's state whenever you need to, without having to deploy new code or wait to see the problem twice.
+
+- In distributed systems, the ratio of _predictable failurs **:** unpredictable failures_ is heavily weighted towards novel and bizarre unpredictable failures, which is why observability is so important for modern software systems.
