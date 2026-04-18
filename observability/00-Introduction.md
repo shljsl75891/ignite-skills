@@ -1,7 +1,7 @@
 ## Introduction to Observability
 
-- Observability is not a tool or a product, but a practice that helps you understand the internal state of your system by analyzing its outputs.
-- It is not just monitoring or telemetry, but a holistic approach to gaining insights into your system's behavior and performance.
+- Observability is not a tool or a product, but a practice that helps us understand the internal state of our system by analyzing its outputs.
+- It is not just monitoring or telemetry, but a holistic approach to gaining insights into our system's behavior and performance.
 - Traditional practices for debugging the internal state of software were designed for monolithic applications, which were much simpler than we have today.
 - With the rise of microservices, distributed systems, and cloud-native architectures, these systems have become infinitely more complex. Observability tools were born out of pure necessity, when traditional approaches were no longer sufficient to understand and debug the issues quickly.
 
@@ -17,16 +17,16 @@ The same concept was adapted by modern software engineers, and it opens up a fun
 For a software application to have observability, we must be able to do the following:
 
 - Understand the inner workings of application
-- Understand any system state our application may have gotten itself into even new ones. You have never seen before and couldn't have predicted.
+- Understand any system state our application may have gotten itself into even new ones. We have never seen before and couldn't have predicted.
 - Understand the inner working and system state slowly by observing and interrogating with external tools without shipping any new custom code to handle it.
 
 After the system is observable, we should be able to answer the following questions:
 
-- Can you understand what any particular user of your software may be experiencing at any given time?
-- Can you identify which system user is generating the most load as well as the second third or hundred most load generating user ?
-- If the 142nd slowest user complaint about performance speed, can you isolate their all requests to understand why exactly things are slow for that specific user?
-- Can you answer questions like these about your applications even if you have never seen or bugged this particular issue before?
-- Can we quickly (within minutes) isolate any fault in your system? No matter how complex, deeply buried or hidden within your stack ?
+- Can we understand what any particular user of our software may be experiencing at any given time?
+- Can we identify which system user is generating the most load as well as the second third or hundred most load generating user ?
+- If the 142nd slowest user complaint about performance speed, can we isolate their all requests to understand why exactly things are slow for that specific user?
+- Can we answer questions like these about our applications even if we have never seen or bugged this particular issue before?
+- Can we quickly (within minutes) isolate any fault in our system? No matter how complex, deeply buried or hidden within our stack ?
 
 and many more such questions. The observability Does help us to clearly see what's happening in all the obscure corners of our software.
 
@@ -42,8 +42,8 @@ Instead, the observability requires evolving the way we think about gathering th
 
 ##### What is wrong with traditional monitoring ?
 
-- The traditional approach of using metrics and monitoring is fundamentally a reactive approach, where you set up alerts and dashboards to monitor specific metrics and logs, and then react to them when they trigger.
-- This approach has limitations because it relies on you knowing what to monitor and what to alert on, but on issues which can arise from unexpected interactions between components.
+- The traditional approach of using metrics and monitoring is fundamentally a reactive approach, where we set up alerts and dashboards to monitor specific metrics and logs, and then react to them when they trigger.
+- This approach has limitations because it relies on us knowing what to monitor and what to alert on, but on issues which can arise from unexpected interactions between components.
 - We need to understand that monitoring is not the only way to understand the systems, instead it's just one way to do that, which works well before but now in today's complex systems.
 
 These monitoring tools were built with certain assumptions such as:
@@ -82,16 +82,16 @@ Historically, in monolithic applications, unpredictable failures were relatively
   - More dimensions means wider the event, the more richer context captured when the event occurred, and thus more we can discover what happened in the system when we are trying to debug an issue.
 
 > [!NOTE]
-> Observeability is often mischaracterised as being achieved when you have three pillars of different elementary data types (Metrics, Traces and Logs). However, if we must have three pillars of observability, then what they should be is tooling that it supports high cardinality, high dimensionality and explorability.
+> Observeability is often mischaracterised as being achieved when we have three pillars of different elementary data types (Metrics, Traces and Logs). However, if we must have three pillars of observability, then what they should be is tooling that it supports high cardinality, high dimensionality and explorability.
 
 #### How it helps in debugging ?
 
 - Observability encourages us to capture as much context as possible, which allows us to ask any question about our system at some point down the line.
 - Observability tools are specifically designed to query against high cardinality and high dimensionality data to interrogate the data in any number of aribitrary ways, which is essential for debugging complex systems.
 
-> A key function of observable systems is the ability to explore your system in open-ended ways, because observeability means that you can understand and explain any state your system can get into no matter how novle or bizarre without shipping and new code.
+> A key function of observable systems is the ability to explore our system in open-ended ways, because observeability means that we can understand and explain any state our system can get into no matter how novle or bizarre without shipping and new code.
 
 > [!CAUTION]
-> Monitoring takes a reactive approach — it only catches problems you've already predicted and added checks for. If something unexpected breaks, you have to see it happen first, then investigate what went wrong, and wait to see the same issue again before you can add a proper check for it. This cycle is slow and frustrating. Observability is different — it lets you ask any question about your system's state whenever you need to, without having to deploy new code or wait to see the problem twice.
+> Monitoring takes a reactive approach — it only catches problems we've already predicted and added checks for. If something unexpected breaks, we have to see it happen first, then investigate what went wrong, and wait to see the same issue again before we can add a proper check for it. This cycle is slow and frustrating. Observability is different — it lets us ask any question about our system's state whenever we need to, without having to deploy new code or wait to see the problem twice.
 
 - In distributed systems, the ratio of _predictable failurs **:** unpredictable failures_ is heavily weighted towards novel and bizarre unpredictable failures, which is why observability is so important for modern software systems.

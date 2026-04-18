@@ -27,7 +27,7 @@ Traditional monitoring does exactly this via **metrics** - numbers representing 
 3. Alert triggers when condition is met
 4. Recovery declared when metric drops below threshold for a pre-configured time
 
-Simple. Mechanical. Only catches what you've already thought of.
+Simple. Mechanical. Only catches what we've already thought of.
 
 ---
 
@@ -35,29 +35,29 @@ Simple. Mechanical. Only catches what you've already thought of.
 
 _Picture this:_
 
-1. It's morning. You open your dashboards - 20-30 graphs showing everything about your system.
-1. Dashboards promise a **"single pane of glass"** where you can see every aspect of your application, all components, their health status.
-1. You scan the graphs. Nothing's on fire. Good. Start your day.
+1. It's morning. We open our dashboards - 20-30 graphs showing everything about our system.
+1. Dashboards promise a **"single pane of glass"** where we can see every aspect of our application, all components, their health status.
+1. We scan the graphs. Nothing's on fire. Good. Start our day.
 
-> Here's the uncomfortable truth: **You don't know what many of these graphs actually measure.** But over time, you've developed something else entirely - **predictive intuition**.
+> Here's the uncomfortable truth: **We don't know what many of these graphs actually measure.** But over time, we've developed something else entirely - **predictive intuition**.
 
-You've learned to read patterns:
+We've learned to read patterns:
 
 - If the bottom graph turns red → drop everything and investigate now
 - If the left corner of the top graph dips while bottom right grows steadily → message queue problem
 - If boxes spike every 5 minutes and the background is redder than normal → database query acting up
 
-You notice a caching problem. Nothing on the dashboard clearly says "your primary caching server is getting hurt." But you've seen this pattern before. The familiar fading pattern tells you to act. You pull up the caching dashboard. Confirm. Fix. Move on.
+We notice a caching problem. Nothing on the dashboard clearly says "our primary caching server is getting hurt." But we've seen this pattern before. The familiar fading pattern tells us to act. We pull up the caching dashboard. Confirm. Fix. Move on.
 
-**This is "reading tea leaves" debugging.** You've learned to divine the source of problems by recognizing visual patterns specific to your system.
+**This is "reading tea leaves" debugging.** We've learned to divine the source of problems by recognizing visual patterns specific to our system.
 
 > [!TIP]
-> If you can diagnose problems by looking at graphs and knowing what to do next - without understanding why - you're doing intuition-based troubleshooting.
+> If we can diagnose problems by looking at graphs and knowing what to do next - without understanding why - we're doing intuition-based troubleshooting.
 
 ### Why Intuition Fails
 
-- What if someone puts you in front of the **same dashboard tools**, but for a completely different application? Different language. Different architecture. Different everything.
-- When the lower left corner turns blue, would you know what to do?
+- What if someone puts us in front of the **same dashboard tools**, but for a completely different application? Different language. Different architecture. Different everything.
+- When the lower left corner turns blue, would we know what to do?
 
 **The answer is no.** The way system problems appear on dashboards is completely different from system to system.
 
@@ -70,10 +70,10 @@ Yet this intuition-based approach is the industry's primary way of interacting w
 Dashboards were originally designed for simpler times when systems collected limited data. They struggle with modern debugging:
 
 - **Too many metrics**: Modern systems collect unlimited data. Impossible to fit everything on one dashboard
-- **Aggregation hides details**: "Average CPU = 90%" doesn't tell you which process caused it
-- **Need pre-defined filters**: You must decide dimensions in advance (instance type, region, etc.)
+- **Aggregation hides details**: "Average CPU = 90%" doesn't tell us which process caused it
+- **Need pre-defined filters**: We must decide dimensions in advance (instance type, region, etc.)
 - **High cardinality issues**: Can't load dashboards with thousands of unique values
-- **Reactive by nature**: You can only investigate what you predicted ahead of time
+- **Reactive by nature**: We can only investigate what we predicted ahead of time
 
 ### Real-World Limitations
 
@@ -91,7 +91,7 @@ After outages, here's what typically happens:
 
 1. On-call engineer figures out which metric would have answered their question
 2. They create that metric and start gathering it
-3. **But it's too late** - you can't go back in time to capture data you didn't think to collect
+3. **But it's too late** - we can't go back in time to capture data we didn't think to collect
 4. Promise: "Next time this happens, we'll know"
 
 **The reality**: Teams go nuts adding custom metrics for everything: query families, expiration rates per collection, error rates per shard, disk usage per index, execution time buckets.
@@ -99,14 +99,14 @@ After outages, here's what typically happens:
 **Result**: They double their entire monitoring budget next billing period. Still can't answer novel questions.
 
 > [!CAUTION]
-> You cannot retroactively capture metrics. Unless you can replay the exact scenario, that data is lost forever.
+> We cannot retroactively capture metrics. Unless we can replay the exact scenario, that data is lost forever.
 
 ---
 
 ## The Core Limitation
 
-- Dashboard debugging requires knowing what you're looking for **before** the problem happens.
-- During an investigation, you might realize: "I need to group CPU usage by instance type." But you can't - you didn't add that label in advance. Investigation blocked.
+- Dashboard debugging requires knowing what we're looking for **before** the problem happens.
+- During an investigation, we might realize: "I need to group CPU usage by instance type." But we can't - we didn't add that label in advance. Investigation blocked.
 
 We became accustomed to **reactive troubleshooting**. We accept not discovering new insights during debugging. This limitation shapes our entire debugging behavior.
 
@@ -114,15 +114,15 @@ We became accustomed to **reactive troubleshooting**. We accept not discovering 
 
 ## Traditional Monitoring is Fundamentally Reactive
 
-This is the part that should make you uncomfortable.
-Many teams accept reactive debugging as "the normal state of operations." But playing catch-up is costly. Metrics tools often price based on cardinality - how many unique values you track. Teams enthusiastically add custom metrics, get shocked by the bill, then remove most of them.
+This is the part that should make us uncomfortable.
+Many teams accept reactive debugging as "the normal state of operations." But playing catch-up is costly. Metrics tools often price based on cardinality - how many unique values we track. Teams enthusiastically add custom metrics, get shocked by the bill, then remove most of them.
 
-### Questions to Ask Yourself
+### Questions to Ask Ourselves
 
-- **How do you locate problems?** Do you determine investigation based on actual visible trail of system information? Or do you look where you found the answer last time?
-- **Do your tools give precise answers?** Or are you performing translations based on system familiarity to arrive at the answer you actually need?
-- **Are you correlating manually?** Are you constantly trying to correlate patterns between observations, relying on yourself to carry context between desperate sources?
-- **Is your best debugger the longest-tenured person?** This is a dead giveaway. If the person who's been there longest is always the best at debugging, your knowledge comes from personal hands-on experience - not systematic tools.
+- **How do we locate problems?** Do we determine investigation based on actual visible trail of system information? Or do we look where we found the answer last time?
+- **Do our tools give precise answers?** Or are we performing translations based on system familiarity to arrive at the answer we actually need?
+- **Are we correlating manually?** Are we constantly trying to correlate patterns between observations, relying on ourselves to carry context between desperate sources?
+- **Is our best debugger the longest-tenured person?** This is a dead giveaway. If the person who's been there longest is always the best at debugging, our knowledge comes from personal hands-on experience - not systematic tools.
 
 ---
 
@@ -135,7 +135,7 @@ Many teams accept reactive debugging as "the normal state of operations." But pl
 | **Monitoring**    | Alerts and outages            | Known problems   |
 | **Observability** | Exploration and understanding | Unknown problems |
 
-Observability lets you discover the source of any problem along any dimension without needing to predict where and how that problem might occur.
+Observability lets us discover the source of any problem along any dimension without needing to predict where and how that problem might occur.
 
 ### Axis 1: Institutional Knowledge
 
@@ -145,12 +145,12 @@ Observability lets you discover the source of any problem along any dimension wi
 ### Axis 2: Finding Hidden Issues
 
 - Monitoring rewards **induction and hunches**. When issues are detected, they're diagnosed based on pattern matching to past problems. This leads to treating symptoms without ever getting to the actual source.
-- Observability lets you treat every investigation as new. Even if conditions look similar to past problems, you follow the clues the data provides - step by step, methodical, objective.
+- Observability lets us treat every investigation as new. Even if conditions look similar to past problems, we follow the clues the data provides - step by step, methodical, objective.
 
 ### Axis 3: Team Confidence
 
-- **The context switching problem:** You're responsible for correlating between dashboards, logs, and traces. Data is pre-aggregated and doesn't support flexible exploration. When you want to zoom in or ask a new question, you must mentally carry context between tools. This is exhausting. And given the incompatibility between data sources, conversion errors creep in.
-- **Observability fixes this:** Observable tools bring high-cardinality, dimensional, multi-touch data into a **single location** where you can slice, dice, zoom in, zoom out, follow breadcrumbs, move through investigation steadily without constant context switching, and critical knowledge moves from "minds of experienced engineers" → explicit data anyone can access.
+- **The context switching problem:** We're responsible for correlating between dashboards, logs, and traces. Data is pre-aggregated and doesn't support flexible exploration. When we want to zoom in or ask a new question, we must mentally carry context between tools. This is exhausting. And given the incompatibility between data sources, conversion errors creep in.
+- **Observability fixes this:** Observable tools bring high-cardinality, dimensional, multi-touch data into a **single location** where we can slice, dice, zoom in, zoom out, follow breadcrumbs, move through investigation steadily without constant context switching, and critical knowledge moves from "minds of experienced engineers" → explicit data anyone can access.
 
 ---
 
