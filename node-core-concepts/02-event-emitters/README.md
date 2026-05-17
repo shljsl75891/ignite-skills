@@ -10,7 +10,7 @@ emitter.on("foo", () => console.log("foo occurred"));
 emitter.emit("foo");
 ```
 
-- It has nothing to do with C++, asynchronous nature, libuv, OS etc. When `emit(event)` is invoiced no command is issued to any OS or libuv at all.
+- It has nothing to do with C++, asynchronous nature, libuv, OS etc. When `emit(event)` is invoked no command is issued to any OS or libuv at all.
 - It is just a pattern written in form of big master object in JS by Node.js and given to us to write more readable and managable code.
 
 ```js
