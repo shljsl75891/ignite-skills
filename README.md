@@ -1,3 +1,5 @@
+### [Design Patterns Repo](https://github.com/manikbajaj/typescript-design-patterns)
+
 # CommandLine Utils Kickstarts
 
 - [jq](#jsonquery)
