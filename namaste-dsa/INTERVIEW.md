@@ -21,5 +21,30 @@ This problem can be resolved by following approaches:
 
 - **Sum Approach**: Calculate the expected sum of the first n natural numbers and subtract the actual sum of the array. The difference will be the missing number. This has limitations with large numbers due to integer overflow and is not suitable for multiple missing numbers.
 - **XOR Approach**: XOR all the numbers in the array and XOR the result with the numbers from 0 to n. The final result will be the missing number. But, this still have limitation of multiple missing numbers.
-- **HashMap Approach**: Use hash map to store the number of occurrences of each number in the array. Then iterate through the numbers and check which has 0 occurrences. This approach has a limitation of space complexity, but can resolve all above issues.
-- **Mutating same array**: Iterate through the array and for each number, mark the index corresponding to that number as negative. Then iterate through the array again and check which index is positive, that index will be the missing number. This approach has a limitation of mutating the input array, but can resolve all above issues.
+- **Mutating same array**: Iterate through the array and for each number, mark the index corresponding to that number as negative. Then iterate through the array again and check which index is positive, that index will be the missing number. This approach has a limitation of mutating the input array, but can resolve all above issues except negative elements.
+
+```javascript
+function findMissingOneToN(nums) {
+  // Add a placeholder to handle 1-based indexing
+  nums.push(1);
+  const n = nums.length;
+
+  // Flip signs to negative at the target indices
+  for (let i = 0; i < n - 1; i++) {
+    let val = Math.abs(nums[i]);
+    if (val < n) {
+      nums[val] = -Math.abs(nums[val]);
+    }
+  }
+
+  // The index that remains positive is the missing number
+  for (let i = 1; i < n; i++) {
+    if (nums[i] > 0) {
+      return i;
+    }
+  }
+  return n;
+}
+```
+
+- **HashMap Approach**: Use hash map to store the number of occurrences of each number in the array. Then iterate through the numbers and check which has 0 occurrences. This approach has a limitation of space complexity, but resolves all above issues.
