@@ -5,30 +5,28 @@
 var singleNonDuplicate = function (nums) {
   let low = 0,
     high = nums.length - 1;
-
   while (low < high) {
-    let mid = low + Math.floor((high - low) / 2);
+    const mid = low + Number.parseInt(high - low) / 2;
+    const isLeftRepeating = nums[mid - 1] === nums[mid];
+    const isRightRepeating = nums[mid + 1] === nums[mid];
+    const isEvenNeighbours = (high - mid) % 2 === 0;
 
-    let onLeft = nums[mid] === nums[mid - 1];
-    let onRight = nums[mid] === nums[mid + 1];
-
-    if (!onLeft && !onRight) {
+    if (!isLeftRepeating && !isRightRepeating) {
       return nums[mid];
     }
 
-    let isOdd = (mid - low) % 2 != 0;
-
-    if (isOdd) {
-      if (onLeft) {
-        low = mid + 1;
-      } else {
-        high = mid - 1;
-      }
-    } else {
-      if (onLeft) {
+    // This logic only works if search space has odd number of elements
+    if (isEvenNeighbours) {
+      if (isLeftRepeating) {
         high = mid;
       } else {
         low = mid;
+      }
+    } else {
+      if (isLeftRepeating) {
+        low = mid + 1;
+      } else {
+        high = mid - 1;
       }
     }
   }
