@@ -1,9 +1,12 @@
 [submodule "namaste-nodejs/devtinder-api"]
 	path = namaste-nodejs/devtinder-api
-	url = git@personal.github.com:shljsl75891/devtinder-api.git
+	url = git@github.com:shljsl75891/devtinder-api.git
 [submodule "namaste-nodejs/devtinder-ui"]
 	path = namaste-nodejs/devtinder-ui
-	url = git@personal.github.com:shljsl75891/devtinder-ui.git
+	url = git@github.com:shljsl75891/devtinder-ui.git
 [submodule "design-principles-and-patterns"]
 	path = design-principles-and-patterns
-	url = git@personal.github.com:shljsl75891/design-principles-and-patterns.git
+	url = git@github.com:shljsl75891/design-principles-and-patterns.git
+[submodule "observability/opentelemetry"]
+	path = observability/opentelemetry
+	url = git@github.com:shljsl75891/opentelemetry.git
