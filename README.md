@@ -1,5 +1,7 @@
 ### [Design Patterns Repo](https://github.com/manikbajaj/typescript-design-patterns)
 
+- [ ] Read about OWASP Top 10 Security Risks
+
 # CommandLine Utils Kickstarts
 
 - [jq](#jsonquery)
