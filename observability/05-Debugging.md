@@ -1,28 +1,28 @@
 ## Analyzing Events to Achieve Observability
 
-Wide structured events are a prerequisite, not the finish line. Observability is measured by what we actually learn from that data — and that depends entirely on how we go about the analysis, not just what we collected.
+Wide structured events are just the starting point, not the finish line. Observability is measured by what we actually learn from that data — and that depends on how we look at it, not just what we collected.
 
-This is also what makes observability debugging fair. Traditional debugging rewards whoever's been staring at the system longest. Observability rewards whoever's most curious, or most willing to actually dig — regardless of tenure.
+This is also what makes observability debugging fair. Old-style debugging rewards whoever has been staring at the system the longest. Observability rewards whoever is most curious, or most willing to dig in — no matter how long they've worked there.
 
-### Debugging from known conditions (the old default)
+### Debugging from known conditions (the old way)
 
-Senior engineers who seem to "just know" where to look aren't magic. They've built up years of intimate familiarity with one system's failure patterns. That's real, but it doesn't transfer to a different codebase, and it doesn't scale to a team.
+Senior engineers who seem to "just know" where to look aren't doing magic. They've spent years getting familiar with one system's usual failures. That's real skill, but it doesn't carry over to a different codebase, and it doesn't scale to a whole team.
 
 > [!CAUTION]
-> Here's the trap: we can have all the wide events in the world and still be debugging from known conditions. Piping that data into `tail -f | grep` for a familiar string, or flipping through dozens of dashboards hunting for a shape we've seen before — that's the same old pattern-matching, just wearing new clothes. The data type didn't change our approach.
+> Here's the trap: we can have all the wide events in the world and still be debugging the old way. Piping that data into `tail -f | grep` for a familiar word, or flipping through dozens of dashboards looking for a shape we've seen before — that's still the same old guesswork, just using newer data. Having better data doesn't change our approach on its own.
 
-Adopting observability doesn't kill this reflex on its own. Ship a new frontend feature, and the instinct is still to jump straight to "did CSS/JS bundle size change, broken down by build ID?" Useful — but only because we already knew what to ask. That doesn't help when we have no idea where to even start looking.
+Using observability tools doesn't remove this habit by itself. Ship a new frontend feature, and the instinct is still to jump straight to "did the CSS/JS file size change, broken down by build?" That's useful — but only because we already knew what to ask. It doesn't help when we have no idea where to even start looking.
 
-**On runbooks:** a living document trying to catalog every possible failure and its fix is a losing game — it goes stale, and stale docs are more dangerous than no docs, because we trust them. Orientation docs earn their keep though: who owns a service, how to reach on-call, what it depends on, a few good starting queries.
+**On runbooks:** a living document trying to list every possible failure and its fix is a losing game — it goes out of date fast, and an out-of-date guide is worse than no guide, because we trust it anyway. Simple orientation docs are still worth having though: who owns a service, how to reach the on-call person, what it depends on, a few good starting queries.
 
 > [!NOTE]
-> Instrumentation itself is often the best documentation. It's not a static file that rots — it's live, and it captures both intent (what an engineer decided was worth naming) and current reality at the same time.
+> Good instrumentation is often the best documentation. It's not a file that goes stale — it stays live, and it shows both what an engineer thought was worth tracking and what's actually happening right now.
 
 ### Debugging from first principles
 
-A first principle is an assumption that isn't derived from some other assumption — the ground floor. Debugging this way means assuming nothing, questioning what's actually been proven, forming a hypothesis, then letting the data confirm or kill it.
+A first principle is something we know is true on its own — not something we assumed based on something else. Debugging this way means assuming nothing, checking what's actually been proven, making a guess (a hypothesis), then letting the data prove or disprove it.
 
-Intuition is great until the system gets complex enough that the space of possible answers explodes. Not everyone can be, or should have to be, a system wizard just to fix a bug. And sometimes the honest answer to "what's wrong" is thirteen different things happening at once — no amount of gut feeling gets us there faster than methodically following what the data shows.
+Gut feeling works fine until the system gets complex enough that there are too many possible answers to guess. Not everyone can be, or should have to be, a system expert just to fix a bug. And sometimes the honest answer to "what's wrong" is thirteen different things happening at once — no amount of gut feeling gets us there faster than carefully following what the data actually shows.
 
 ### The core analysis loop
 
@@ -33,61 +33,61 @@ Intuition is great until the system gets complex enough that the space of possib
                                    ▲                    │
                                    │                    ▼
                        ┌───────────────────────┐  ┌──────────────────────────┐
-                       │ Found dimensions that │  │ Visualize telemetry to   │
-                       │ isolate the anomaly?  │  │ spot the performance     │
-                       │                       │  │ anomaly.                 │
+                       │ Found the fields that │  │ Look at the data to      │
+                       │ point to the problem? │  │ spot the unusual         │
+                       │                       │  │ behavior.                │
                        └───────────────────────┘  └──────────────────────────┘
                                    ▲                    │
                                    │                    ▼
                           ┌────────────────────────────────────────┐
-                          │ Search for shared dimensions across    │
-                          │ the anomalous area — group, filter,    │
-                          │ compare against everything else.       │
+                          │ Look for what the unusual events have  │
+                          │ in common — group them, filter them,   │
+                          │ compare them to everything else.       │
                           └────────────────────────────────────────┘
 ```
 
-1. Start with whatever triggered the investigation — an alert, a complaint, a hunch.
-2. Confirm it's real: is there an actual change in behavior somewhere, visible as a shift in a graph?
-3. Hunt for the dimension driving that change — sample outliers in the anomalous rows, slice across common fields (status code, region, whatever), filter to expose what's different.
-4. Know enough yet? Done. If not, treat this narrower slice as the new anomaly and go back to step 3.
+1. Start with whatever made us look — an alert, a complaint, a hunch.
+2. Check it's real: is something actually behaving differently, visible as a change in a graph?
+3. Look for what's causing that change — check a few odd-looking rows, group by common fields (status code, region, whatever), filter to see what stands out.
+4. Do we know enough now? If yes, we're done. If not, treat this smaller group as the new thing to explain, and go back to step 3.
 
-No prior system knowledge required — just brute force, cycling through dimensions until one correlates. Which is exactly the problem: doing this by hand, row by row, doesn't scale once a system gets big enough.
+We don't need to know the system beforehand — just keep trying different fields until one explains the pattern. The problem is doing this by hand, row by row, gets slow once the system is big enough.
 
 ### Where metrics, logs, traces, and errors fit
 
-The loop doesn't juggle three separate pillars — it runs on one thing: wide structured events. Metrics, logs, traces, and errors all show up as facets of that same data, not as parallel inputs.
+The loop doesn't use three separate types of data — it runs on one thing: wide structured events. Metrics, logs, traces, and errors all show up as parts of that same data, not as separate inputs.
 
-| Telemetry             | Role in the loop                                                                                                                |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| Structured events     | The actual substance — every field is a dimension we group, slice, or filter on                                                 |
-| Traces                | Connected events (spans). Once an anomaly's isolated, we drill into one trace to follow a single request end to end             |
-| Errors / status codes | Just another dimension on the event — filter by `error = true` or `status = 500` like any other field                           |
-| Metrics               | Good for firing the opening alert (step 1), then done. Pre-aggregated, so useless once we're inside the loop slicing dimensions |
-| Logs                  | Only usable after they've been reconstructed into events — stitched together by request or trace ID                             |
+| Telemetry             | Role in the loop                                                                                                                                   |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Structured events     | The actual content — every field is something we can group, slice, or filter on                                                                    |
+| Traces                | Connected events (steps in one request). Once we've found the problem area, we look at one full request start to finish                            |
+| Errors / status codes | Just another field on the event — filter by `error = true` or `status = 500` like anything else                                                    |
+| Metrics               | Good for the first alert (step 1), then not much else. Already averaged out, so not useful once we're inside the loop looking at individual fields |
+| Logs                  | Only useful once they've been rebuilt into events — matched up by request or trace ID                                                              |
 
-That's the part easy to miss: errors and traces aren't a separate debugging tool we switch to. They're columns in the same wide event we're already slicing.
+The easy-to-miss part: errors and traces aren't a separate tool we switch to. They're just fields in the same wide event we're already looking at.
 
-### Automating the brute force
+### Letting a computer do the heavy lifting
 
-Machines are good at exactly this kind of grinding. Pull every dimension's values from inside the anomalous area and outside it, then rank by how different they are. A sorted list might look like:
+Computers are good at this kind of repetitive work. Pull every field's values from inside the unusual group and outside it, then rank them by how different they are. A sorted list might look like:
 
-- `request.endpoint = batch` — 100% of isolated events, 20% of baseline
-- `handler_route = /markers` — 100% of isolated events, 10% of baseline
-- `request.header.user_agent` — 97% of isolated events, 100% of baseline (not interesting)
+- `request.endpoint = batch` — shows up in 100% of the unusual events, 20% of normal ones
+- `handler_route = /markers` — 100% of the unusual events, 10% of normal ones
+- `request.header.user_agent` — 97% of the unusual events, 100% of normal ones (not a real difference)
 
-An observability tool can do this visually: draw a box around an anomaly on a heatmap, and it computes inside-vs-outside percentages across every field automatically.
+An observability tool can show this visually: draw a box around the unusual area on a chart, and it works out the inside-vs-outside percentages for every field on its own.
 
 ![](/assets/2026-07-04-16-19-29.png)
 
-One real example: `global.availability_zone = us-east-1a` showed up in **98%** of slow events but only **17%** of baseline events. That one number pointed straight at a bad availability zone from the cloud provider — later confirmed both by the provider and by customers reporting the same thing independently.
+One real example: `global.availability_zone = us-east-1a` showed up in **98%** of the slow events but only **17%** of the normal ones. That one number pointed straight at a broken zone from the cloud provider — later confirmed both by the provider and by customers reporting the same issue on their own.
 
 ![](/assets/2026-07-04-16-19-52.png)
 
 > [!IMPORTANT]
-> None of this works without arbitrarily wide structured events. Metrics don't carry enough context to slice this way. Logs could get there, but only after painstakingly stitching request IDs back together and rebuilding the events we should've had in the first place.
+> None of this works without wide structured events. Metrics don't carry enough detail to slice this way. Logs could get there too, but only after carefully matching request IDs back together and rebuilding the events we should have had in the first place.
 
-### Humans and machines, together
+### People and computers, together
 
-Machines are fast at sifting huge datasets for patterns. Humans are good at putting those patterns in context and deciding where to look next. Neither replaces the other — the loop works best when computers do the grinding and people do the judgment call.
+Computers are fast at going through huge amounts of data to find patterns. People are good at putting those patterns in context and deciding what to look at next. Neither replaces the other — the loop works best when the computer does the counting and the person makes the call.
 
-That naturally raises the question of just how much intelligence — AI, ML, or otherwise — should get folded into that number-crunching step. That's a question for later. Next up: how observability and monitoring actually coexist, instead of one replacing the other.
+That naturally raises the question of how much of this should be handled by AI or machine learning instead of a person. That's a question for later. Next up: how observability and monitoring can actually work together, instead of one replacing the other.
