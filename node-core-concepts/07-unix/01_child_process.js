@@ -15,4 +15,4 @@ exec("ls -alh", (err, stdout, stderr) => {
   console.log(`stdout: ${stderr}`);
 });
 
-// Difference spawn vs exec at first glance, spawn is used to run a command and get the output as a stream, while exec is used to run a command and get the output as a string.
+// Difference spawn vs exec at first glance, spawn is used to run a command and get the output as a stream, while exec is used to run a command and get the output as a full buffer
