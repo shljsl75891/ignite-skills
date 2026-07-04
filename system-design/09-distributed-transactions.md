@@ -3,7 +3,7 @@
 - Transaction is an abstraction that allows us to treat multiple operations into a single logical operation.
 - Transactions help us to make databases fault tolerant and consistent.
 
-#### ACID Properties
+### ACID Properties
 
 Most of the relational database systems support ACID properties. However, some non-relational databases offer partial support for ACID properties such as Redis, DynamoDB, Cassandra etc.
 
@@ -16,7 +16,7 @@ Most of the relational database systems support ACID properties. However, some n
 
 > Every relational database has their own way to implement these ACID properties. But, at the end of day, there all are ACID compliant.
 
-### Isolation Levels
+#### Isolation Levels
 
 The problems when multiple transactions are running concurrently are:
 
@@ -63,7 +63,7 @@ The problems when multiple transactions are running concurrently are:
 > [!IMPORTANT]
 > In postgresql, due to **_MVCC_** (Multi Version Concurrency Control) implementation, the default isolation level is `Read Committed` and it does not support `Read Uncommitted` isolation level. It acts just like `Read Committed` in postgresql. Also, due to the same reason, the `Repeatable Read` isolation level in postgresql does not allow phantom reads as well. But, according to SQL standard, `Repeatable Read` isolation level allows phantom reads.
 
-#### Database Normalization
+### Database Normalization
 
 Database normalization means: decompose a big table into smaller tables until each table follows single responsibility principle. Each table should represent one entity or concept.
 
@@ -190,10 +190,6 @@ How it helps:
 
 - Department facts stored once.
 - No transitive dependency in `employees`.
-
-##### BCNF (Boyce-Codd Normal Form)
-
-<TODO>
 
 #### Row Level Locking mechanism in relational databases
 

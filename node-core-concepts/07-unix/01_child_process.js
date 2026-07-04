@@ -16,3 +16,4 @@ exec("ls -alh", (err, stdout, stderr) => {
 });
 
 // Difference spawn vs exec at first glance, spawn is used to run a command and get the output as a stream, while exec is used to run a command and get the output as a full buffer
+// The main difference between them although is exec runs command in a shell by default while spawn does not run it in a shell but just run as a child process by default.
