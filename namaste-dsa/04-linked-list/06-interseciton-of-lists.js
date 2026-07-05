@@ -54,3 +54,35 @@ var getIntersectionNode = function (headA, headB) {
   }
   return null;
 };
+
+/**
+ * Above approach can be done in one pass as well, by using two pointers.
+ * The analogy behind this approach is that, while moving two pointers with same speed, whenever one pointer reaches the end of a list (always shorter list),
+ * we redirect it to the head of longer list. Then, we will do the same for other pointer. After second pointer switches to the shorter list,
+ * they will now need to cover the same distance to reach the intersection point or `null` if there is no intersection.
+ *
+ * This intiution is same as the slow fast pointer approach, just the difference is that fast have no need to move fast, because one distance is already shorter than the other.
+ * If both distances are equal, then they will meet at the intersection point or `null` in first pass itself.
+ */
+/**
+ * @param {ListNode} headA
+ * @param {ListNode} headB
+ * @return {ListNode}
+ */
+var getIntersectionNode = function (headA, headB) {
+  let ptrA = headA,
+    ptrB = headB;
+  while (ptrA !== ptrB) {
+    if (ptrA === null) {
+      ptrA = headB;
+      continue;
+    }
+    if (ptrB === null) {
+      ptrB = headA;
+      continue;
+    }
+    ptrA = ptrA.next;
+    ptrB = ptrB.next;
+  }
+  return ptrB;
+};
