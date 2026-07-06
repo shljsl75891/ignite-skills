@@ -2,6 +2,8 @@
 
 #### Caching
 
+![](/assets/2026-07-06-12-32-34.png)
+
 **Locality of Reference Principle**: Anything requested once is likely to be requested again. It states that a program tends to access the small datasets repeatedly over a short period of time. Caching is a technique that takes advantage of this principle by storing frequently accessed data in a faster storage, such as memory, to improve the performance of the system.
 
 - Cached content is stored in memory (RAM) which is a faster to access but volatile memory. Whereas, the original content is stored in a slower storage, such as disk or database, which is non-volatile memory.
