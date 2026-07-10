@@ -50,3 +50,22 @@ While sending messages to Kafka, we can also specify an optional `key` or `parti
 
 > [!IMPORTANT]
 > The transport layer protocol used by Apache Kafka is TCP, which provides reliable and ordered delivery of messages. They have built an application layer protocol on top of TCP to handle the communication between producers, consumers, and brokers.
+
+### Comparison between Kafka and RabbitMQ
+
+| Feature           | Kafka                                         | RabbitMQ                                    |
+| ----------------- | --------------------------------------------- | ------------------------------------------- |
+| Primary purpose   | Event streaming                               | Task/message queue                          |
+| Message lifecycle | Retained for replay                           | Removed after ACK                           |
+| Consumers         | Multiple independent consumers                | Typically one consumer per task             |
+| Replay            | ✅ Supported                                  | ❌ Not after ACK                            |
+| Throughput        | Very high (millions)                          | Moderate to high (thousands)                |
+| Best for          | Events, analytics, audit logs, event sourcing | Background jobs, commands, async processing |
+
+**Rule of Thumb**
+
+- **Kafka** → When an event needs to be consumed by multiple services, replayed later, or processed at very high scale.
+- **RabbitMQ** → When a task should be executed once by a worker and then considered complete.
+- **Kafka as a task queue is an anti-pattern** because it treats an event log like a work queue, ignoring Kafka's strengths (replay, retention, multiple consumers) while adding unnecessary complexity for simple job processing.
+- If we want to consume the messages using multiple consumers in Rabbit MQ, then we need to have multiple queues.
+- Kafka uses a pull-based mechanism (offset-based), where consumers pull messages from topics at their own pace, enabling independent consumption rates. RabbitMQ uses a push-based mechanism where the queue delivers messages to consumers via round-robin or competing consumer patterns.
