@@ -15,6 +15,7 @@
 13. [Group Anagrams](https://leetcode.com/problems/group-anagrams) => [Solution](https://github.com/shljsl75891/ignite-skills/blob/main/namaste-dsa/05-strings/10-group-anagrams.js)
 14. [Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array) => [Solution](https://github.com/shljsl75891/ignite-skills/blob/main/namaste-dsa/07-binary-search/03-search-in-rotated-sorted.js)
 15. [Single Element in a Sorted Array](https://leetcode.com/problems/single-element-in-a-sorted-array) => [Solution](https://github.com/shljsl75891/ignite-skills/blob/main/namaste-dsa/07-binary-search/08-single-element-in-sorted-array.js)
+16. [Find K Closest Elements](https://leetcode.com/problems/find-k-closest-elements) => [Solution](https://github.com/shljsl75891/ignite-skills/blob/main/namaste-dsa/07-binary-search/10-find-k-closest-elements.js)
 
 ## Miscellaneous Approaches
 
