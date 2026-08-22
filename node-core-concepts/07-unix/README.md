@@ -63,3 +63,9 @@ There are many different shells available to use, each with its own features and
 
 > [!NOTE]
 > We can make any shell as default shell for our kernel. For example, we can make _bash_ as default shell for our kernel by running the command `chsh -s /bin/bash` in terminal.
+
+##### Hierarchy to look for commands in shell
+
+Whenever we type anything on the terminal, the shell application, especially bash, looks all the things in as below hierarchy.
+
+![](/assets/2026-08-22-17-03-55.png)
