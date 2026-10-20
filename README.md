@@ -1,3 +1,10 @@
+> [!TIP]
+> To reduce music volume along with watching lectures
+>
+> ```javascript
+> document.querySelector(".video-stream").volume = 0.01;
+> ```
+
 ### [Design Patterns Repo](https://github.com/manikbajaj/typescript-design-patterns)
 
 - [ ] Read about OWASP Top 10 Security Risks
