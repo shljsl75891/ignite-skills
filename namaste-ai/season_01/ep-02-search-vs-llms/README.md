@@ -7,9 +7,9 @@ Let's search Google and ask ChatGPT the same two questions:
 
 ### Search engines vs LLMs
 
-| | How it works |
-|---|---|
-| Google | Question -> look up pages in a pre-built index -> rank them -> return links |
+|                    | How it works                                                                           |
+| ------------------ | -------------------------------------------------------------------------------------- |
+| Google             | Question -> look up pages in a pre-built index -> rank them -> return links            |
 | LLM (like ChatGPT) | Prompt -> predict the next word from patterns learned in training -> generate response |
 
 > [!TIP]
@@ -56,4 +56,18 @@ Common causes:
 
 An LLM is built to produce the most likely answer, even when that answer is wrong. Maths is an example. LLMs alone get arithmetic wrong, but a calculator tool fixes that.
 
+> [!CAUTION]
+> ![](/assets/2026-10-31-16-31-26.png)
+
 So, back to our question: does ChatGPT know or guess? It predicts. For the wine, nothing real backs the answer, so the model writes what a plausible answer looks like.
+
+# Best of both: RAG
+
+Search engines retrieve evidence but write no answer. LLMs write fluent answers but have no evidence. Combine them in an AI assistant like ChatGPT and we get better answers. This is **Retrieval-Augmented Generation (RAG)**.
+
+1. **Retrieval:** search for relevant sources and fetch them
+2. **Augmentation:** add those sources to the prompt
+3. **Generation:** the LLM turns the evidence into a clear, useful answer
+
+> [!TIP]
+> RAG fixes the cutoff problem and cuts hallucination, because the answer rests on fetched sources. It does not remove hallucination. The model can still misread the sources, so we should still check them.
